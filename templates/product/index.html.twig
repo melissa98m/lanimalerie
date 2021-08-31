@@ -3,7 +3,15 @@
 {% block title %}Product index{% endblock %}
 
 {% block body %}
-    <h1>Product index</h1>
+
+ <div class="row">
+    <div class="col-md-3">
+    <h2>Filtrer</h2>
+    {{ form(form) }}
+    </div>
+    <div class="col-md-9">
+
+    <h1>Liste de produits</h1>
 
     <table class="table">
         <thead>
@@ -42,4 +50,6 @@
     </table>
 
     <a href="{{ path('product_new') }}">Create new</a>
+    </div>
+    </div>
 {% endblock %}
