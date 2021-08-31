@@ -18,7 +18,7 @@ class SearchType extends AbstractType{
         $builder
         ->add('string' , TextType::class, [ 'label' => 'Rechercher',
                                             'required' => false,
-                                            'class'=> 'form-control-sm',
+                                            
                                             'attr' => [
                                             'placehoder' => 'Votre recherche'
                                             ]
