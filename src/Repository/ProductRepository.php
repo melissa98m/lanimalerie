@@ -71,4 +71,14 @@ class ProductRepository extends ServiceEntityRepository
      
    return $query->getQuery()->getResult();
     }
+
+    public function findOnetById($id)
+    {
+        $q = $this->createQueryBuilder('p')
+            ->select('p.id')
+            ->where('p.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
 }
