@@ -28,6 +28,7 @@
                 <td>{{ product.enstock ? 'Yes' : 'No' }}</td>
                 <td>{{ product.reference }}</td>
                 <td>{{ product.description }}</td>
+                <td><a class="btn btn-primary" href="{{ path('product_show', {'id': product.id}) }}">Détails</a><td>
             </tr>
         {% else %}
             <tr>
