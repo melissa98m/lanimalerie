@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ServiceController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/wamp/www/lanimalerie/src/Controller/ServiceController.php'|file_link(0) }}">src/Controller/ServiceController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/wamp/www/lanimalerie/templates/service/index.html.twig'|file_link(0) }}">templates/service/index.html.twig</a></code></li>
+    </ul>
+</div>
+{% endblock %}
+{% block footer %}
+        <footer>
+            <div class="container-fluid">
+                <div class="row">
+                        <div class="col-md-3 pt-3 pt-md-0">
+               <h6 class="">- Suivez-nous -</h6>
+               <div class="d-flex justify-content">
+                 <i class="fab fa-facebook-square fa-1x mx-2"></i>
+                  <i class="fab fa-instagram  fa-1x mx-2"></i>
+                  <i class="fab fa-twitter-square fa-1x mx-2"></i>
+               </div>
+                        
+
+                        <a href="#" class="">Qui sommes-nous? </a>
+                    </div>
+                    
+                    <div class="col-lg-3">
+
+                        <a href="/cgv" class="">Mention legales et CGV</a> <br>
+                        <br>
+                        <p> Nos Livraisons </p>
+                    
+                        
+                    </div>
+                    <div class="col-md-3 pt-3 pt-md-0">
+                        <a href="#" class="">Politique de confidentialité </a></p>
+                        <h6>Moyens de paiements</h6>
+                        <div class="d-flex text-center justify-content">
+                        <i class="fab fa-paypal fa-1x mx-2"></i>
+                        <i class="fab fa-cc-visa fa-1x mx-2"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-3">  
+                        <h6><a href="/contact" class="">Nous contacter</a>&#160;et&#160;<a href="/sav" >notre SAV</a></h6><br>   
+                        <em>Nous sommes ouvert de 9h à 19h30 du Lundi au Samedi</em>
+                        <h6 class="text-left d-block d-sm-none mb-3">- La Nimes'Alerie -</h6>
+                    </div>
+                </div>
+                
+  
+
+                
+                    
+               
+
+        </footer>
+{% endblock %}
+{% block javascripts %}
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        </script>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <script src="{{ asset('js/script.js') }}"></script>
+{% endblock %}

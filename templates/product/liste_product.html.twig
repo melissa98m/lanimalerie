@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Tous nos produits</title>{% endblock %}
+
+{% block body %}
+    <h1>Nos Produits</h1>
+  <p>Retrouvez ici tous les produits de notre boutique</p>
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Enstock</th>
+                <th>Reference</th>
+                <th>Description</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.image }}</td>
+                <td>{{ product.enstock ? 'Yes' : 'No' }}</td>
+                <td>{{ product.reference }}</td>
+                <td>{{ product.description }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}

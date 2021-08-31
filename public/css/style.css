@@ -1,0 +1,195 @@
+header{
+   background-color: #b6ff62cb;
+    
+   
+ }
+ .navbar-light .navbar-brand{
+    color: rgb(46, 44, 44);
+     font-size: 1.2rem;
+     
+ }
+ .navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+     color: blue;
+ }
+ .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link{
+    color: rgb(46, 44, 44);
+     font-size: 1.2rem;
+   
+     
+ }
+ 
+ .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+     color:blue;
+   
+ }
+ .nav-link{
+     font-size: 1.2rem;
+     
+ }
+ ul.navbar{
+     list-style-type:none;
+ }
+ li a {
+    color: rgb(46, 44, 44)
+ 
+ }
+ 
+ #connection{
+     text-decoration: none;
+     color: rgb(46, 44, 44) ;
+ }
+ a:hover {
+     color: blue;
+ 
+ }
+ a {
+    color: black;
+    text-decoration: none;
+ }
+ .my-2{
+     padding: 15px;
+     margin: 20px;
+ }
+ ul.navbar.text-end{
+     padding: 10px;
+     margin: 10px;
+ }
+ 
+ body {
+     
+     background-color: #defa77b6;
+ 
+ 
+ }
+ ul {
+ text-decoration: none;
+ list-style-type: none;}
+ 
+ 
+ 
+ section.content {
+     border-left: 1px solid #000080;
+     border-right: 1px solid #000080;
+     background-color: rgba(255, 255, 255,.5);
+     
+ }
+ 
+ section#nous{
+    background: rgba(0, 123, 18, 0.39);
+background: repeating-radial-gradient(circle farthest-side at bottom left, rgba(0,123,19,0.52) 1%, rgba(0,158,47,0.41) 9%);
+background: -webkit-repeating-radial-gradient(circle farthest-side at bottom left, rgba(0, 123, 18, 0.438) 1%, rgba(0, 158, 47, 0.329) 9%);
+background: -moz-repeating-radial-gradient(circle farthest-side at bottom left, rgba(0, 123, 18, 0.452) 1%, rgba(0,158,47,0.41) 9%);
+     
+     margin: 10px;
+     padding: 5px;
+ }
+ 
+ 
+ footer {
+    background-color: #b6ff62cb;     
+    
+ }
+ footer a {
+     text-decoration:none;
+     color: rgb(46, 44, 44) ;
+ }
+ footer ul {
+ text-decoration: none;
+ list-style-type: none;
+ color: rgb(46, 44, 44) ;
+ }
+ 
+ 
+ 
+ 
+ 
+
+ 
+ @media screen and (max-width:500px){
+     #logreg-forms{
+         width:300px;
+     }
+     
+    }
+
+ #formRegister{
+    background-color:rgba(230, 230, 250, 0.61);
+
+ }
+ #registration{
+    background-color:rgba(230, 230, 250, 0.71);
+ }
+ .form-control{
+     width: 40%;
+     display: block;
+     text-align: center;
+     margin: auto;
+ }
+ 
+ #formcontact{
+    background-color:rgba(230, 230, 250, 0.81);
+    width: 60%;
+    display: block;
+    text-align: center;
+    margin: auto;
+ }
+
+ #formsav{
+    background-color:rgba(230, 230, 250, 0.81);
+    width: 70%;
+    display: block;
+    text-align: center;
+    margin: auto;
+ 
+ }
+
+ .mb-3{
+
+     display: block;
+    text-align: center;
+    margin: auto;
+ }
+
+ .pt-5{
+    background-color:rgba(230, 230, 250, 0.81);
+}
+
+.pt-5#chatpub{
+    background-color:rgba(104, 104, 122, 0.966);
+}
+
+
+
+
+
+
+
+ .container#product{
+    background-color:rgba(230, 230, 250, 0.81);
+    width: 70%;
+    display: block;
+    text-align: center;
+    margin: auto;
+ }
+ 
+
+
+
+
+
+img#carrousel{
+    padding: 20px;
+}
+
+
+
+
+
+
+div#orders {
+    background-color: rgb(190, 190, 190) ;
+}
+
+#lisproduit {
+display: inline;
+}
