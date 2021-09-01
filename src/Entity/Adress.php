@@ -120,7 +120,7 @@ class Adress
     }
 
    public function __toString(){
-       return $this->getNumero().'[br]'.$this->getName().'[br]'.$this->getCodepostal().'[br]'.$this->getVille();
+       return $this->getNumero().'[br]'.$this->getName().'[br]'.$this->getCodepostal().'-'.$this->getVille();
    }
 
     public function getFirstname(): ?string
