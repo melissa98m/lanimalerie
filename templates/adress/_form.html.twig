@@ -1,4 +1,29 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="row">
+ <div class="col-md-6">
+   {{ form_row(form.firstname) }}
+ </div>
+ <div class="col-md-6">
+   {{ form_row(form.lastname) }}
+ </div>
+ <div class="col-md-6">
+   {{ form_row(form.company) }}
+ </div>
+ <div class="col-md-6">
+   {{ form_row(form.numero) }}
+ </div>
+ <div class="col-md-6">
+   {{ form_row(form.name) }}
+ </div>
+ <div class="col-md-6">
+   {{ form_row(form.codepostal) }}
+ </div>
+ <div class="col-md-6">
+   {{ form_row(form.ville) }}
+ </div>
+ <div class="col-md-6">
+   {{ form_row(form.pays) }}
+ </div>
+   
+</div>
 {{ form_end(form) }}

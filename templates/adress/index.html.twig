@@ -1,41 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Adress index{% endblock %}
+{% block title %}<title>Gerer mes adresses</title>{% endblock %}
 
 {% block body %}
-    <h1>Adress index</h1>
+<h2>Gerer mes Adresses</h2>
+   
+    <p>Ici vous trouverez toutes vos adresses , vous pouvez les gerer </p>
+   <a href="{{ path('adress_new') }}" class="btn btn-primary btn-sm float-right">Ajouter une adresse</a>
+   
+   
+   <a href="{{ path('mon_compte') }}"> Retour à "Mon compte" </a>
+   <hr>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Numero</th>
-                <th>Codepostal</th>
-                <th>Ville</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for adress in adresses %}
-            <tr>
-                <td>{{ adress.id }}</td>
-                <td>{{ adress.name }}</td>
-                <td>{{ adress.numero }}</td>
-                <td>{{ adress.codepostal }}</td>
-                <td>{{ adress.ville }}</td>
-                <td>
-                    <a href="{{ path('adress_show', {'id': adress.id}) }}">show</a>
-                    <a href="{{ path('adress_edit', {'id': adress.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+     {% if app.user.adress | length == 0  %}
+    <p class="text-center">Vous n'avez pas encore ajouté d'adresses à votre compte, 
+    pour en créer un Cliquez ici</p>
+    {% else %}
+    <div class="row">
+    {%  for adress in app.user.adress %}
+     <div class="col-md-3">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+         <h5 class="card-title">{{ adress.firstname }} {{ adress.lastname }}</h5>
+        <p class="card-text">{{ adress.numero}} {{ adress.name }}</p>
+         <p class="card-text">{{ adress.codepostal}} {{ adress.ville }}</p>
+    
+    <a href="{{ path('adress_edit' , {'id': adress.id}) }}" class="text-primary">Modifier</a> |
+    <a href="{{ path('adress_delete', {'id': adress.id}) }}" class="text-danger">Supprimer</a>
+    </div>
+    </div>
+  </div>
+{% endfor %}
+   {% endif %}
 
-    <a href="{{ path('adress_new') }}">Create new</a>
+
 {% endblock %}

@@ -6,27 +6,36 @@ use App\Entity\Adress;
 use App\Form\AdressType;
 use App\Repository\AdressRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/adress")
+ * @Route("/moncompte/adresses")
  */
 class AdressController extends AbstractController
 {
+
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager){
+     $this->entityManager = $entityManager;
+ }
     /**
-     * @Route("/", name="adress_index", methods={"GET"})
+     * @Route("/", name="account_adresses", methods={"GET"})
      */
     public function index(AdressRepository $adressRepository): Response
     {
+
+        
         return $this->render('adress/index.html.twig', [
             'adresses' => $adressRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="adress_new", methods={"GET","POST"})
+     * @Route("/ajouter-adresse", name="adress_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -35,11 +44,12 @@ class AdressController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $adress->setUser($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($adress);
             $entityManager->flush();
 
-            return $this->redirectToRoute('adress_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('account_adresses', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('adress/new.html.twig', [
@@ -63,13 +73,18 @@ class AdressController extends AbstractController
      */
     public function edit(Request $request, Adress $adress): Response
     {
+
+
+         if (!$adress || $adress->getUser() != $this->getUser()) {
+            return $this->redirectToRoute('account_adresses');
+         }
         $form = $this->createForm(AdressType::class, $adress);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('adress_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('account_adresses', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('adress/edit.html.twig', [
@@ -79,16 +94,18 @@ class AdressController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="adress_delete", methods={"POST"})
+     * @Route("/delete/{id}", name="adress_delete")
      */
-    public function delete(Request $request, Adress $adress): Response
+    public function delete($id): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$adress->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($adress);
-            $entityManager->flush();
-        }
+        $adress = $this->entityManager->getRepository(Adress::class )->findOneById($id);
 
-        return $this->redirectToRoute('adress_index', [], Response::HTTP_SEE_OTHER);
+        if (!$adress && $adress->getUser() != $this->getUser()) {
+
+           $this->entityManager->remove($adress);
+            $this->entityManager->flush();
+        }
+    
+        return $this->redirectToRoute('account_adresses');
     }
 }
