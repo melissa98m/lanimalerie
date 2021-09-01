@@ -27,15 +27,18 @@ private $entityManager;
 
         $cartComplete = [];
         
-        if($cart->get()){
+        
         foreach( $cart->get() as $id => $quantity){
             $product = $this->entityManager->getRepository(Product::class )->findOneById($id);
+            
+            
+            
             $cartComplete[]= ['product' => $product ,
                             'quantity' => $quantity ];
         }
 
 
-    }
+    
         return $this->render('cart/index.html.twig' , [
             "cart"=>$cartComplete
         ]);
