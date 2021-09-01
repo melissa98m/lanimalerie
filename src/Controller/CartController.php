@@ -27,15 +27,19 @@ private $entityManager;
 
         $cartComplete = [];
         
-        
+        if($cart->get()){
         foreach( $cart->get() as $id => $quantity){
             $product = $this->entityManager->getRepository(Product::class )->findOneById($id);
             $cartComplete[]= ['product' => $product ,
                             'quantity' => $quantity ];
         }
+
+
+    }
         return $this->render('cart/index.html.twig' , [
             "cart"=>$cartComplete
         ]);
+    
     }
 
     /**
@@ -62,6 +66,16 @@ private $entityManager;
     public function delete(Cart $cart , $id)
     {
         $cart->delete($id);
+
+        return $this->redirectToRoute('cart');
+    }
+
+     /**
+     * @Route("/cart/decrease/{id}" , name="decrease_to_cart")
+     */
+    public function decrease(Cart $cart , $id)
+    {
+        $cart->decrease($id);
 
         return $this->redirectToRoute('cart');
     }

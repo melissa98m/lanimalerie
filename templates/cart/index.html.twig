@@ -95,9 +95,15 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
   {% set total = null %}
   {% for product in cart %}
     <tr>
-      <td><img src="/uploads/{{product.product.image}}" alt="{{product.product.name}}">
+      <td><img src="{{ asset('upload/' ~  product.product.image) }}" height="50px"alt="{{product.product.name}}">
       {{ product.product.name }}</td>
-      <td>x{{ product.quantity }}</td>
+      <td>
+      <a href="{{ path('add_to_cart' , { id: product.product.id})}}">
+      <img src="{{ asset('images/plus.png')}}" height="10px" alt="ajouter_quantity"></a>
+      x{{ product.quantity }}
+      <a href="{{ path('decrease_to_cart' , { id: product.product.id}) }}">
+      <img src="{{ asset('images/moins.png')}}" height="10px" alt="reduire_quantity"></a>
+      </td>
       <td>{{ product.product.price }}</td>
       <td>{{ (product.product.price * product.quantity )}}</td>
       <td><a href="{{ path('delete_to_cart' , {'id' :product.product.id}) }}" >
