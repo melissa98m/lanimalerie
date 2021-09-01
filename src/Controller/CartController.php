@@ -37,6 +37,7 @@ private $entityManager;
             "cart"=>$cartComplete
         ]);
     }
+
     /**
      * @Route("/cart/add/{id}", name="add_to_cart")
      */
@@ -52,5 +53,16 @@ private $entityManager;
     {
         $cart->remove();
         return $this->redirectToRoute('product_index');
+    }
+
+
+    /**
+     * @Route("/cart/delte/{id}" , name="delete_to_cart")
+     */
+    public function delete(Cart $cart , $id)
+    {
+        $cart->delete($id);
+
+        return $this->redirectToRoute('cart');
     }
 }

@@ -193,3 +193,10 @@ div#orders {
 #lisproduit {
 display: inline;
 }
+
+
+.cart-icon {
+
+    height: 20px;
+    padding-left: 20px;
+}

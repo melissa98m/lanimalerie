@@ -1,9 +1,83 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Panier - La Nimes'Alerie{% endblock %}
-
+{# public/images/logo.png #}
+ {% block stylesheets %}
+{# public/css/style.css #}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
+<link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
+{# public/js/script.js #}
+{% endblock %}
+    
+  
 {% block body %}
+{% block header %}
+    <header class="container-fluid">
+
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            {% block images %}
+            <div class="d-inline-block">
+                <img src="{{ asset('images/logo.png') }}" alt="logo"/>
+            </div>
+            {% endblock %}
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto m-1 p-1">
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="/home" tabindex="-1" aria-disabled="true">Accueil </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/product" tabindex="-1"
+                            aria-disabled="true">Nos Produits</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/service" tabindex="-1"
+                            aria-disabled="true">Nos services 3.0</a>
+                    </li>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/" tabindex="-1"
+                            aria-disabled="true">Qui sommes nous?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/contact" tabindex="-1"
+                            aria-disabled="true">Contact</a>
+                    </li>
+                
+                </ul>
+                   
+                        
+                        <div class="nav-bar-item-custom">
+                            {% if app.user %}
+                           <div class="text-center mb-3">
+                             <p><a href={{ path('mon_compte') }}>Mon compte <small> ({{  app.user.name }})</small></a> | 
+                             <a href={{ path('app_logout')}}>Déconnexion</a></p> 
+                             </div>
+                            {% else %}
+                           
+                                <a class="btn btn-outline-success" href="{{ path('app_login')}}">Connexion</a> | 
+                                <a  class="btn btn-outline-success" href="{{ path('app_register')}}">S'inscrire</a>
+                            
+                          {% endif %}
+
+                            <a href="{{ path('cart')}}"><img src="{{ asset('images/shopping-cart.png') }}" class="cart-icon" alt="mon_panier"></a>
+
+                    </div>
+                    
+            
+        </nav>
+    </header>
+{% endblock %}
+{% block main %}
   <h1>Mon panier</h1>
+  {% if cart | length > 0 %}
   <p>Retrouvez l'ensemble des produits ajoutés au panier</p>
   <hr>
   <table class="table">
@@ -14,6 +88,7 @@
       <th scope="col">Quantité</th>
       <th scope="col">Prix</th>
       <th scope="col">Total</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -25,6 +100,9 @@
       <td>x{{ product.quantity }}</td>
       <td>{{ product.product.price }}</td>
       <td>{{ (product.product.price * product.quantity )}}</td>
+      <td><a href="{{ path('delete_to_cart' , {'id' :product.product.id}) }}" >
+      <img src="{{ asset('images/remove.png') }}" height="20px" alt="Supprimer le produit">
+      </a></td>
     </tr>
     {% set total = total + (product.product.price * product.quantity ) %}
     {% endfor %}
@@ -35,6 +113,13 @@
 <b>Nombre de produit : {{ cart | length }}</b><br>
 <b>Total du panier : {{ total }} €</b> 
 <hr>
-<a href="" class="btn btn-primary">Valider mon panier</a>
+<a href="" class="btn btn-primary mt-3">Valider mon panier</a>
 </div>
+{% else %}
+   <hr>
+   <p><b>Votre panier est vide</b></p>
+{% endif %}
 {% endblock %}
+
+
+{% endblock %} 

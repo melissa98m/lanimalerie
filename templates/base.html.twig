@@ -32,37 +32,28 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                         <a class="nav-link active" href="/home" tabindex="-1" aria-disabled="true">Accueil </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/dog" tabindex="-1"
-                            aria-disabled="true">Chiens</a>
+                        <a class="nav-link active" href="/product" tabindex="-1"
+                            aria-disabled="true">Nos Produits</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/cat" tabindex="-1"
-                            aria-disabled="true">Chats</a>
+                        <a class="nav-link active" href="/service" tabindex="-1"
+                            aria-disabled="true">Nos services 3.0</a>
                     </li>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/nac" tabindex="-1"
-                            aria-disabled="true">NAC</a>
+                        <a class="nav-link active" href="/" tabindex="-1"
+                            aria-disabled="true">Qui sommes nous?</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/aquario" tabindex="-1"
-                            aria-disabled="true">Aquariophilie</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/service" tabindex="1" >Le Service 3.0</a>
+                        <a class="nav-link active" href="/contact" tabindex="-1"
+                            aria-disabled="true">Contact</a>
                     </li>
                 
-                <div class="d-flex">
-                    <form class="d-flex my-1 my-lg-0">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
                 </ul>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <li class="nav-item"> 
-                                   <i class="fas fa-shopping-bag fa-2x"></i>
-                                    <a class="nav-link active text-center" href="/panier" tabindex="-1" aria-disabled="true" active="" aria-current="page">Panier</a>
+                                   <a href="{{ path('cart')}}"><img src="{{ asset('images/shopping-cart.png') }}" class="cart-icon" alt="mon_panier"></a>
+
                            </li> 
                         <li class="nav-item">
                             {% if app.user %}
@@ -85,6 +76,15 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         </nav>
     </header>
 {% endblock %}
+
+
+
+
+
+
+
+
+
  {% block footer %}
         <footer>
             <div class="container-fluid">
