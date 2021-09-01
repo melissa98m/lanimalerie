@@ -119,11 +119,13 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 <b>Nombre de produit : {{ cart | length }}</b><br>
 <b>Total du panier : {{ total }} €</b> 
 <hr>
-<a href="" class="btn btn-primary mt-3">Valider mon panier</a>
+<a href="{{ path('order') }}" class="btn btn-primary mt-3">Valider mon panier</a>
 </div>
-{% else %}
+  {%  else  %}
+
    <hr>
    <p><b>Votre panier est vide</b></p>
+
 {% endif %}
 {% endblock %}
 

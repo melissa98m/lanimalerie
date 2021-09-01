@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma commande{% endblock %}
+
+{% block body %}
+<div class="row">
+<h2>Je passe ma commande</h2>
+
+<p>Réglez mes préference avant de passer à l'étape suivante</p>
+<hr>
+<div class="col-md-6">
+<b>Choisir mon adresse de livraison</b>
+{% set formHtml %}
+{{ form(form) }}
+{% endset %}
+{{ formHtml | replace({('[br]') : '<br>'})| raw }}
+<b>Choisir mon transporteur</b>
+</div>
+<div class="col-md-6">
+<b>Recapitulatif de ma commande</b><br>
+<b>Button payer</b>
+</div>
+
+</div>
+{% endblock %}
