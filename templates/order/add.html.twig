@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Valider ma commande{% endblock %}
+{% block title %}Récaptitulatif commande{% endblock %}
 
     
   
@@ -71,27 +71,27 @@
 
 {% block main %}
 <div class="row">
-<h2>Je passe ma commande</h2>
+<h2>Vérifier les informations</h2>
 
-<p>Réglez mes préference avant de passer à l'étape suivante</p>
+
 <hr>
-<div class="col-md-6">
-
-{% set formHtml %}
-<p>Pas d'adresse enregistrer?<a href="{{ path('adress_new')}}" class="text-primary">En crééer une</a></p>
-{{ form_start(form , {action:path('order_recap') })}}
-{{ form_end(form) }}
-
-
-
-
-{% endset %}
-{{ formHtml | replace({('[br]') : '<br>'})| raw }}
-
+<div class="col-md-5 mt-5">
+  <strong>Mon adresse de livraison</strong> 
+  <br>
+   <div class="form-check mt-2">
+    {{ delivery|replace({('[br]') : '<br>'})| raw }}
+    </div>
+    <hr>
+  <strong>Mon transporteur :</strong>
+ <div class="form-check">
+  {{ carriers.name}}<br>
+  {{ carriers.description }}<br>
+  {{ carriers.price}}€
+  </div>
 </div>
-<div class="col-md-6">
+<div class="col-md-7">
 <div class="text-center">
-<b>Recapitulatif de ma commande</b><br>
+<b>Ma commande</b><br>
 <p>Retrouvez ici le récapitulatif de votre commande</p>
 </div>
 <div class="order-summary">
@@ -102,17 +102,22 @@
             <img src="{{ asset('upload/' ~  product.product.image) }}" 
             height="50px"alt="{{product.product.name}}">
         </div>
-        <div class="col-3 my-auto">{{product.product.name}}</div>
-        <div class="col-1 my-auto">{{product.product.price}}€</div>
-        <div class="col-2 my-auto">
-            x {{product.quantity}}
-  </div>
-    
-  </div>
+        <div class="col-4 my-auto">{{product.product.name}}<br>
+            x{{product.quantity}}
+        </div>
+        <div class="col-2 my-auto">{{ product.product.price * product.quantity  }}€</div>
+        </div>
 {% set total = total + (product.product.price * product.quantity )  %}
 {% endfor %}
-   <p class="mt-2">Total à payer : {{ total }} €</p> 
+<hr>
+   <strong class="mt-2">Sous total : {{ total }} € <br>
+    Livraison: {{ carriers.price }}€</strong>
+<hr>
+ 
+   <strong>Total T.T.C: {% set totalTTC = total + carriers.price %}€ </strong>
 </div>
+    <a class="btn btn-danger btn-block mt-3" href="{{ path('remove_my_cart') }}">Abondonner</a>
+   <a href="" class="btn btn-success btn-block mt-3">Payer | {{ totalTTC }}€</a>
 </div>
 <div>
 {% endblock %}
