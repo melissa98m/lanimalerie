@@ -14,10 +14,7 @@ class OrderController extends AbstractController
     public function index(): Response
     {
 
-        if($this->getUser()->getAdresses()->getValues()){
-            return $this->redirectToRoute('adress_new');
-        }
-
+        
         $form = $this->createForm(OrderType::class , null , [
             'user' => $this->getUser()
         ]);
@@ -25,5 +22,6 @@ class OrderController extends AbstractController
             'controller_name' => 'OrderController',
             'form' => $form->createView()
         ]);
-    }
+    
+}
 }

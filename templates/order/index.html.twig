@@ -11,10 +11,14 @@
 <div class="col-md-6">
 <b>Choisir mon adresse de livraison</b>
 {% set formHtml %}
-{{ form(form) }}
+{{ form_row(form.adresses) }}
+<p>Pas d'adresse enregistrer?<a href="{{ path('adress_new')}}">En crééer une</a></p>
+<b>Choisir mon transporteur</b>
+{{ form_row(form.carriers) }}
 {% endset %}
 {{ formHtml | replace({('[br]') : '<br>'})| raw }}
-<b>Choisir mon transporteur</b>
+
+
 </div>
 <div class="col-md-6">
 <b>Recapitulatif de ma commande</b><br>
