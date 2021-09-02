@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Ma commande</title>{% endblock %}
+
+{% block body %}
+<h2>Ma commande n° {{ order.id }}</h2>
+   
+    <p>Détails de votre commande</p>
+   
+   
+   
+   <a href="{{ path('mon_compte') }}"> Retour à "Mon compte" </a>
+  
+
+     
+      <hr>
+    <p class="text-center">Vous n'avez pas encore passé de commandes</p>
+    
+    
+    <table class="table mt-4">
+       <thead>
+    <tr>
+     <th scope="col">Reference</th>
+      <th scope="col">Passé le</th>
+      <th scope="col">Produits</th>
+      <th scope="col">Mode de livraison</th>
+      <th scope="col">Prix de la livraison</th>
+      <th scope="col">Email utilisé</th>
+
+
+     <tbody>
+     
+        <tr>
+          <td><span class="badge bg-secondary">{{ order.id }}</span></td>
+          <th scope="row">{{ order.dateCreate|date('d/m/Y')}} </th>
+          <td>{{ order.orderDetails|length }}</td>
+          <td>{{ order.carrierName }}</td>
+           <td>{{ order.carrierPrice }}</td>
+          <td>{{ order.user.email }}</td>
+          
+         
+        </tr>
+    
+  </tbody>
+  
+</table>
+
+
+  
+
+
+{% endblock %}

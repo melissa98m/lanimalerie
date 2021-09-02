@@ -31,19 +31,20 @@ class Category
      */
     private $description;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $image;
-
+    
     /**
      * @ORM\ManyToMany(targetEntity=Product::class, mappedBy="category")
      */
     private $products;
 
+    
+
+    
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
+       
     }
 
     public function getId(): ?int
@@ -75,17 +76,7 @@ class Category
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
+   
 
     /**
      * @return Collection|Product[]
@@ -116,5 +107,7 @@ class Category
     public function __toString() {
         return $this->name;
     }
+
+    
 }
 

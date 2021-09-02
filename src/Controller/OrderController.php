@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Classe\Cart;
 use App\Entity\Order;
+use App\Entity\User;
 use App\Entity\Carrier;
 use App\Entity\OrderDetails;
 use App\Entity\Product;
@@ -134,8 +135,9 @@ class OrderController extends AbstractController
 }
 
     /**
-     * @Route("/commande/recapitulatif", name="order_recap" , methods={"POST"} )
+     * @Route("/commande/recapitulatif", name="order_recap" )
      */
+
     public function add(Cart $cart , Request $request)
     {
 
@@ -147,7 +149,7 @@ class OrderController extends AbstractController
 
         $form->handleRequest($request);
         if($form->isSubmitted()  && $form->isValid()){
-
+            
             $date = new \DateTime();
             $carriers = $form->get('carriers')->getData();
             $delivery = $form->get('adresses')->getData(); //recuperer le contenue champ upload envoyé
@@ -194,11 +196,49 @@ class OrderController extends AbstractController
         return $this->render('order/add.html.twig', [
             'cart' => $cart->getFull(),
             'carriers' => $carriers,
-            'delivery' => $delivery
+            'delivery' => $delivery, 
+            'order'  => $orderDetails
         ]);
     }
         return $this->redirectToRoute('cart');
     }
-}
+
+    /**
+     * @Route("/commande/success/{id}", name="success") 
+     */
+
+    public function succes($id )
+    {
+        
+        $order = $this->entityManager->getRepository(Order::class)->findOneById($id);
+
+      //if(!$order || $order->getUser() != $this->getUser()){
+       //     return $this->redirectToRoute('home');
+     // }
+        
+
+       //if(!$order->getIsPaid() ){
+
+        //changer le statut de ispaid 
+          // $order->setIsPaid(1);
+          //$this->entityManager->persist($order);
+           //$this->entityManager->flush();
+
+           //envoyer mail client 
+
+           //
+
+       
+        return $this->render('order/orderSuccess.html.twig', [
+            'order' => $order ,
+            
+        ]);
+    }
+
+    
+     
+    }
+
+
 
 

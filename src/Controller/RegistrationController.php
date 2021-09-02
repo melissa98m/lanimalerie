@@ -37,7 +37,8 @@ class RegistrationController extends AbstractController
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $form->get('plainPassword')->getData(),
+                    
                 )
             );
 
@@ -45,12 +46,13 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('melissa.mangione@gmail.com', 'NoReply'))
                     ->to($user->getEmail())
-                    ->subject('Please Confirm your Email')
+                    ->subject('Confirmer votre email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email

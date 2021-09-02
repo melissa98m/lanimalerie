@@ -113,11 +113,11 @@
    <strong class="mt-2">Sous total : {{ total }} € <br>
     Livraison: {{ carriers.price }}€</strong>
 <hr>
- 
+ {{ dump(order)}}
    <strong>Total T.T.C: {% set totalTTC = total + carriers.price %}€ </strong>
 </div>
     <a class="btn btn-danger btn-block mt-3" href="{{ path('remove_my_cart') }}">Abondonner</a>
-   <a href="" class="btn btn-success btn-block mt-3">Payer | {{ totalTTC }}€</a>
+   <a href="{{ path('success' , {'id': order.id}) }}" class="btn btn-success btn-block mt-3" >Payer | {{ totalTTC }}€</a>
 </div>
 <div>
 {% endblock %}
