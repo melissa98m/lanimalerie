@@ -106,19 +106,22 @@ class OrderController extends AbstractController
     }
    
 
+       
+    
+
+    
+
     /**
      * @Route("/commande", name="order")
      */
-    public function index(Cart $cart , Request $request): Response
+
+    public function index(Cart $cart , Request $request)
     {
 
         
         $form = $this->createForm(OrderType::class , null , [
             'user' => $this->getUser()
-
         ]);
-
-
         if($form->isSubmitted()  && $form->isValid()){
             $form->handleRequest($request);
         }
@@ -127,7 +130,7 @@ class OrderController extends AbstractController
             'form' => $form->createView(),
             'cart' => $cart->getFull()
         ]);
-    
+
 }
 
     /**
@@ -136,7 +139,7 @@ class OrderController extends AbstractController
     public function add(Cart $cart , Request $request)
     {
 
-        
+
         $form = $this->createForm(OrderType::class , null , [
             'user' => $this->getUser()
 
@@ -149,7 +152,7 @@ class OrderController extends AbstractController
             $carriers = $form->get('carriers')->getData();
             $delivery = $form->get('adresses')->getData(); //recuperer le contenue champ upload envoyé
             $delivrey_content  = $delivery->getFirstname().' '. $delivery->getLastname();
-             
+
               if($delivery->getCompany()){
                 $delivrey_content.='<br>'.$delivery->getCompany();
             }
@@ -171,7 +174,7 @@ class OrderController extends AbstractController
                 $this->entityManager->persist($order);
                 //enregistrer produit
 
-                
+
                 foreach($cart->getFull() as $product){
 
                     $orderDetails = new OrderDetails();
@@ -184,10 +187,10 @@ class OrderController extends AbstractController
 
                     $this->entityManager->persist($orderDetails);
                 }
-             
+
                 $this->entityManager->flush();
-            
-        
+
+
         return $this->render('order/add.html.twig', [
             'cart' => $cart->getFull(),
             'carriers' => $carriers,
