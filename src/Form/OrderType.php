@@ -47,8 +47,14 @@ class OrderType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
+<<<<<<< Updated upstream
             // Configure your form options here
             'user'=> array()
+=======
+            'data_class' => Order::class,
+              // Configure your form options here
+              'user'=> array()
+>>>>>>> Stashed changes
         ]);
     }
 }
