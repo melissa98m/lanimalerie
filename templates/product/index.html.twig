@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product index{% endblock %}
+{% block title %}<title>Nos Produits</title>{% endblock %}
 
 {% block body %}
 
@@ -12,18 +12,18 @@
     <div class="col-md-9">
 
     <h1>Liste de produits</h1>
-
+    <a href="{{ path('product_new') }}">Créer un produit</a>
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Price</th>
+                <th>Nom</th>
+                <th>Prix</th>
                 <th>Image</th>
-                <th>Enstock</th>
+                <th>En stock</th>
                 <th>Reference</th>
                 <th>Description</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -37,8 +37,8 @@
                 <td>{{ product.reference }}</td>
                 <td>{{ product.description }}</td>
                 <td>
-                    <a href="{{ path('product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+                    <a  class="btn btn-primary" href="{{ path('product_show', {'id': product.id}) }}">Détails</a>
+                    <a class="btn btn-warning" href="{{ path('product_edit', {'id': product.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -49,7 +49,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('product_new') }}">Create new</a>
+    
     </div>
     </div>
 {% endblock %}

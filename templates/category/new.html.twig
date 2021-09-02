@@ -15,78 +15,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     
   
 {% block body %}
-{% block header %}
-    <header class="container-fluid">
 
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            {% block images %}
-            <div class="d-inline-block">
-                <img src="{{ asset('images/logo.png') }}" alt="Symfony!"/>
-            </div>
-            {% endblock %}
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto m-1 p-1">
-                    <li class="nav-item active">
-                        <a class="nav-link active" href="/home" tabindex="-1" aria-disabled="true">Accueil </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/dog" tabindex="-1"
-                            aria-disabled="true">Chiens</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/cat" tabindex="-1"
-                            aria-disabled="true">Chats</a>
-                    </li>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/nac" tabindex="-1"
-                            aria-disabled="true">NAC</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/aquario" tabindex="-1"
-                            aria-disabled="true">Aquariophilie</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/service" tabindex="1" >Le Service 3.0</a>
-                    </li>
-                
-                <div class="d-flex">
-                    <form class="d-flex my-1 my-lg-0">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
-                </ul>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <li class="nav-item"> 
-                                   <i class="fas fa-shopping-bag fa-2x"></i>
-                                    <a class="nav-link active text-center" href="/panier" tabindex="-1" aria-disabled="true" active="" aria-current="page">Panier</a>
-                           </li> 
-                        <li class="nav-item">
-                            {% if app.user %}
-                           <div class="text-center mb-3">
-                             <h5><a href={{ path('mon_compte') }} id="connecter">Mon compte</a></h5> 
-                             <a href="{{ path('app_logout') }}">Logout</a>
-                             </div>
-                            {% else %}
-                            <div class="text-center mb-3">
-                                <button type="button" class="btn btn-outline-success"> <a href="/login" tabindex="-1"
-                                        aria-disabled="true" active aria-current="page"
-                                        id="connection">Connexion</a></button>
-                                <button type="button" class="btn btn-outline-success"><a href="/register" tabindex="-1"
-                                        aria-disabled="true" active aria-current="page">S'inscrire</a></button>
-                            </div>
-                          {% endif %}
-                    </li>
-                    
-            </div>
-        </nav>
-    </header>
-{% endblock %}
     <h1>Céer une nouvelle categorie</h1>
 
     {{ include('category/_form.html.twig') }}

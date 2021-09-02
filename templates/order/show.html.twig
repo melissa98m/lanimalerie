@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}<title>Détail commande {{ order.id }}</title>{% endblock %}
+
+{% block body %}
+    <h1>Détail commande n°{{ order.id }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ order.id }}</td>
+            </tr>
+            <tr>
+                <th>Date Création</th>
+                <td>{{ order.dateCreate ? order.dateCreate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Transporteur</th>
+                <td>{{ order.carrierName }}</td>
+            </tr>
+            <tr>
+                <th>Prix transporteur</th>
+                <td>{{ order.carrierPrice }}</td>
+            </tr>
+            <tr>
+                <th>Adresse livraison</th>
+                <td>{{ order.delivery }}</td>
+            </tr>
+            <tr>
+                <th>Payée?</th>
+                <td>{{ order.isPaid ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-warning" href="{{ path('order_edit', {'id': order.id}) }}">Modifier</a><br>
+    <a href="{{ path('order_index') }}">Retourner aux commandes</a>
+
+    
+
+   
+{% endblock %}

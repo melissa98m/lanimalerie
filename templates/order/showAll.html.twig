@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Order index{% endblock %}
+
+{% block body %}
+    <h1>Order index</h1>
+<a href="{{ path('order_new') }}">Créer une commande </a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date création</th>
+                <th>Transporteur</th>
+                <th>Prix Transpoteur</th>
+                <th>Adresse Livraison</th>
+                <th>Payée?</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.dateCreate ? order.dateCreate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ order.carrierName }}</td>
+                <td>{{ order.carrierPrice }}</td>
+                <td>{{ order.delivery }}</td>
+                <td>{{ order.isPaid ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a  class="btn btn-success" href="{{ path('order_show', {'id': order.id}) }}">Détails</a>
+                    <a class="btn btn-warning" href="{{ path('order_edit', {'id': order.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+    <a href="{{ path('back_office') }}">Retourner au back-office</a>
+
+{% endblock %}

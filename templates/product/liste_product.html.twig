@@ -1,42 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}<title>Tous nos produits</title>{% endblock %}
+{% block title %}<title>Produits</title>{% endblock %}
 
 {% block body %}
-    <h1>Nos Produits</h1>
-  <p>Retrouvez ici tous les produits de notre boutique</p>
-    <table class="table">
-        <thead>
-            <tr>
-                
-                <th>Name</th>
-                <th>Price</th>
-                <th>Image</th>
-                <th>Enstock</th>
-                <th>Reference</th>
-                <th>Description</th>
-                
-            </tr>
-        </thead>
-        <tbody>
+
+ <div class="row">
+    <div class="col-md-3">
+    <h2>Filtrer</h2>
+    {{ form(form) }}
+    </div>
+    <div class="col-md-9">
+
+    <h1>Liste de produits</h1>
+    
+    
+        <div class="row mt-5">
         {% for product in products %}
-            <tr>
-                
-                <td>{{ product.name }}</td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.image }}</td>
-                <td>{{ product.enstock ? 'Yes' : 'No' }}</td>
-                <td>{{ product.reference }}</td>
-                <td>{{ product.description }}</td>
-                <td><a class="btn btn-primary" href="{{ path('product_show', {'id': product.id}) }}">Détails</a><td>
-            </tr>
+          
+            <div class="text-center" style="width: 18rem;">
+              <img src="{{ asset('upload/' ~  product.image) }}" alt="{{ product.name }}" width="100px" />
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text">{{ product.price }}€</p>
+              <a  class="btn btn-primary" href="{{ path('product_detail', {'id': product.id}) }}">Détails</a>
+             </div>
+            </div>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="8">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+        </div>
+        
 
     
+    </div>
+    </div>
 {% endblock %}

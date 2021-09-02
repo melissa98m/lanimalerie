@@ -94,7 +94,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="product_show", methods={"GET"})
+     * @Route("/{id}/back", name="product_show", methods={"GET"})
      */
     public function show(Product $product): Response
     {
@@ -104,7 +104,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/admin/{id}/edit", name="product_edit", methods={"GET","POST"})
+     * @Route("/back/{id}/edit", name="product_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Product $product , SluggerInterface $slugger): Response
     {
@@ -156,11 +156,32 @@ class ProductController extends AbstractController
     /**
      * @Route("/", name="liste_product", methods={"GET"})
      */
-    public function liste_product(ProductRepository $productRepository): Response
+    public function liste_product(ProductRepository $productRepository , Request $request)
     {
+        $search = new Search() ;
+        $form = $this->createForm(SearchType::class , $search);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            
+            $products = $this->entityManager->getRepository(Product::class)->findWithSearch($search);
+            
+        }else{
+            $products = $this->entityManager->getRepository(Product::class)->findAll();
+        }
         return $this->render('product/liste_product.html.twig', [
-            'products' => $productRepository->findAll(),
+            'products' => $products,
+            'form' => $form->createView(),
+        ]
+
+        );
+    }
+    /**
+     * @Route("/{id}", name="product_detail", methods={"GET"})
+     */
+    public function showDetail(Product $product): Response
+    {
+        return $this->render('product/detailProduct.html.twig', [
+            'product' => $product,
         ]);
     }
-
 }

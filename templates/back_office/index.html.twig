@@ -101,13 +101,13 @@
         {% block main %}
             <ul>
             <h3>Gestion du site</h3>
-            <li><a href="{{ path('list_Product') }}">Gerer les produits</a></li>
+            <li><a href="{{ path('product_index') }}">Gerer les produits</a></li>
             <li><a href="{{ path('brand_index') }}">Gerer les marques</a></li>
-            <li><a href="{{ path('list_category') }}">Gerer les category</a></li>
+            <li><a href="{{ path('category_index') }}">Gerer les category</a></li>
             <h3>Gestion bases de données</h3>
-            <li><a href="">Gerer les commandes</a></li>
-            <li><a href="">Gerer les utilisateur</a></li>
-            <li><a href="">Gerer les clients</a></li>
+            <li><a href="{{ path('order_index') }}">Gerer les commandes</a></li>
+            <li><a href="{{ path('user_index') }}">Gerer les utilisateur</a></li>
+            
             </ul>
 
         {% endblock %}
