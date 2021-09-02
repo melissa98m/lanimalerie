@@ -1,0 +1,23 @@
+body{
+    background-color: aliceblue;
+}
+
+a {
+    text-decoration: none;
+    color:black;
+}
+
+.form-check{
+    background-color: #e3edff;
+    padding: 20px 65px;
+    margin-top: 7px;
+}
+.col-form-label required{
+    font-weight: bold;
+}
+
+.order-summary{
+    background-color: #e4eeff;
+    padding: 20px 65px;
+    margin-top: 29px;
+}
