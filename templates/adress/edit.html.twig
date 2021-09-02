@@ -6,8 +6,9 @@
     <h1>Edit Adress</h1>
 
     {{ include('adress/_form.html.twig', {'button_label': 'Modifier'}) }}
+      {{ include('adress/_delete_form.html.twig') }}
 
-    <a href="{{ path('account_adresses') }}">back to list</a>
+    <a href="{{ path('account_adresses') }}">Retourner à mes adresses</a>
 
-    {{ include('adress/_delete_form.html.twig') }}
+  
 {% endblock %}
