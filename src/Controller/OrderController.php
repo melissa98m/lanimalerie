@@ -9,6 +9,10 @@ use App\Entity\Carrier;
 use App\Entity\OrderDetails;
 use App\Entity\Product;
 use App\Form\OrderType;
+use App\Form\OrdersType;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use App\Repository\OrderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,8 +33,10 @@ class OrderController extends AbstractController
         $this->entityManager = $entityManager;
            
     }
+
+
     /**
-     * @Route("/orders", name="order_index", methods={"GET"})
+     * @Route("backoffice/orders", name="order_index", methods={"GET"})
      */
     public function showAll(OrderRepository $orderRepository): Response
     {
@@ -40,25 +46,20 @@ class OrderController extends AbstractController
     }
 
     /**
-     * @Route("/orders/new", name="order_new", methods={"GET","POST"})
+     * @Route("/commande", name="order_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request , Cart $cart ): Response
     {
-        $order = new Order();
-        $form = $this->createForm(Order1Type::class, $order);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($order);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('order_index', [], Response::HTTP_SEE_OTHER);
+        $form = $this->createForm(OrderType::class , null , [
+            'user' => $this->getUser()
+        ]);
+        if($form->isSubmitted()  && $form->isValid()){
+            $form->handleRequest($request);
         }
-
-        return $this->renderForm('order/new.html.twig', [
-            'orders' => $order,
-            'form' => $form,
+        return $this->render('order/index.html.twig', [
+            'controller_name' => 'OrderController',
+            'form' => $form->createView(),
+            'cart' => $cart->getFull()
         ]);
     }
 
@@ -77,7 +78,7 @@ class OrderController extends AbstractController
      */
     public function edit(Request $request, Order $order): Response
     {
-        $form = $this->createForm(Order1Type::class, $order);
+        $form = $this->createForm(OrdersType::class, $order);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -88,7 +89,7 @@ class OrderController extends AbstractController
 
         return $this->renderForm('order/edit.html.twig', [
             'order' => $order,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -169,7 +170,9 @@ class OrderController extends AbstractController
                 $order->setCarrierName( $carriers->getName());
                 $order->setCarrierPrice( $carriers->getPrice());
                 $order->setDelivery($delivrey_content);
-                $order->setIsPaid(0);
+                $order->setState(1);
+
+                
 
 
 
@@ -202,39 +205,42 @@ class OrderController extends AbstractController
     }
         return $this->redirectToRoute('cart');
     }
-
     /**
-     * @Route("/commande/success/{id}", name="success") 
+     * @Route("/success/{id}", name="order_success")
      */
 
-    public function succes($id )
+    public function success(Order $order)
     {
-        
-        $order = $this->entityManager->getRepository(Order::class)->findOneById($id);
-
-      //if(!$order || $order->getUser() != $this->getUser()){
-       //     return $this->redirectToRoute('home');
-     // }
-        
-
-       //if(!$order->getIsPaid() ){
-
-        //changer le statut de ispaid 
-          // $order->setIsPaid(1);
-          //$this->entityManager->persist($order);
-           //$this->entityManager->flush();
-
-           //envoyer mail client 
-
-           //
-
        
+    
+
+    /*if(!$order->getState() == 0){
+        $cart->remove();
+        $order->setState(2);
+        $this->entityManager->flush();
+
+
+    }*/
+
+        // ici le mail de validation
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Validation de votre commande')
+            ->setFrom(array('melissa.mangione@gmail.com' => "NoReply"))
+            ->setTo($order->getUser()->getEmail())
+            ->setCharset('utf-8')
+            ->setContentType('text/html')
+            ->setBody($this->renderView('order/orderSuccess.html.twig',array('user' => $order->getUser())));
+
+        $this->get('mailer')->send($message);
+
+        
         return $this->render('order/orderSuccess.html.twig', [
-            'order' => $order ,
-            
+            'order' => $order,
         ]);
     }
+    
 
+    
     
      
     }

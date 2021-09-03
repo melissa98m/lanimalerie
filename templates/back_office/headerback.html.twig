@@ -1,9 +1,4 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}<title> Détails {{ category.name }}</title>{% endblock %}
-{# public/images/logo.png #}
- 
-    {% block stylesheets %}
+{% block stylesheets %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
 integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
@@ -57,39 +52,16 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 {% endblock %}
 
 
-  
-{% block main %}
-
-    <h1>{{ category.name }}</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ category.id }}</td>
-            </tr>
-            <tr>
-                <th>Noms</th>
-                <td>{{ category.name }}</td>
-            </tr>
-             <tr>
-                <th>Description</th>
-                <td>{{ category.description }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-   
-
-    <a  class="btn btn-warning" href="{{ path('category_edit', {'id': category.id}) }}">Modifier</a>
-
-    {{ include('category/_delete_form.html.twig') }}
 
 
 
-    <a href="{{ path('category_index') }}">Retourner à la liste</a>
-{% endblock %}
-{% block footer %}
+
+
+
+
+
+
+ {% block footer %}
         <footer>
             <div class="container-fluid bg-light ">
                 <div class="row">

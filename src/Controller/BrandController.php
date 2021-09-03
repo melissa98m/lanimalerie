@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/brand")
+ * @Route("/backoffice/brand")
  */
 class BrandController extends AbstractController
 {

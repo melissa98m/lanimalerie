@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/back/category")
+ * @Route("/backoffice/category")
  */
 class CategoryController extends AbstractController
 {
