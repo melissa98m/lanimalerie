@@ -54,11 +54,13 @@ class ProductRepository extends ServiceEntityRepository
      * requete qui permet de recupererles produits en fonction de la recherche de l'utilisateur
      *@return Product()
      */
+
     public function findWithSearch(Search $search){
         $query =  $this->createQueryBuilder('p')
                         ->select('c', 'p')
                         ->join('p.category' , 'c');
     if(!empty($search->categories)){
+        
         $query = $query
         ->andWhere('c.id IN (:categories)')
         ->setParameter('categories', $search->categories);
@@ -66,7 +68,7 @@ class ProductRepository extends ServiceEntityRepository
     if(!empty($search->categories)){
         $query = $query
         ->andWhere('p.name LIKE :string')
-        ->setParameter('string', " %{$search->string}% ");
+        ->setParameter('string', "%{$search->string}%");
     }
      
    return $query->getQuery()->getResult();

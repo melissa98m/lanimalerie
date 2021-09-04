@@ -51,3 +51,8 @@ a {
 	#head { min-height:420px; padding-top:160px; }
 	#head .lead { font-size: 34px; }
 }
+
+.fa-cart-plus {
+    color: rgb(0, 168, 126);
+  }
+  

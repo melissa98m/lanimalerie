@@ -1,5 +1,6 @@
 api_platform:
    title: 'Symfony API Platform REST API'
+   allow_plain_identifiers: true
    description: 'A Symfony API to manage a library'
    version: '1.0.0'
    mapping:
@@ -8,3 +9,5 @@ api_platform:
        json: ['application/merge-patch+json']
    swagger:
        versions: [3]
+    
+    

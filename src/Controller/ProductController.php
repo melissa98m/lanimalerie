@@ -154,7 +154,7 @@ class ProductController extends AbstractController
         return $this->redirectToRoute('product_index', [], Response::HTTP_SEE_OTHER);
     }
     /**
-     * @Route("/", name="liste_product", methods={"GET"})
+     * @Route("/", name="liste_product")
      */
     public function liste_product(ProductRepository $productRepository , Request $request)
     {

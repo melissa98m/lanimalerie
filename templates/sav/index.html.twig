@@ -24,15 +24,15 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 <img src="{{ asset('images/logo.png') }}" alt="logo"/>
             </div>
             {% endblock %}
-  <a class="navbar-brand" href="#">La Nimes'Alerie</a>
+  <a class="navbar-brand" href="{{ path('home') }}">La Nimes'Alerie</a>
   <button class="navbar-toggler"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-     <li class="nav-item" > <a class="nav-link active" href="{{ path('home')}}">Acceuil<span class="sr-only">(current)</span></a></li>
+     <li class="nav-item" > <a class="nav-link active" href="{{ path('home')}}">Accueil<span class="sr-only">(current)</span></a></li>
       <li class="nav-item" ><a class=" nav-link active" href="{{ path('liste_product')}}">Nos Produits</a></li>
-     <li class="nav-item" > <a class="nav-link active " href="service">Service 3.0</a></li>
+     <li class="nav-item" > <a class="nav-link active " href="/service">Service 3.0</a></li>
      <li class="nav-item"> <a class="nav-link active" href="{{ path('contact')}}">Contact</a></li>
     </ul>
     </div>
@@ -91,7 +91,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     
                     <div class="col-lg-3">
 
-                        <a href="/cgv" class="text-light">Mention legales et CGV</a> <br>
+                        <a href="/cgv" class="text-light">Mentions legales et CGV</a> <br>
                         <br>
                         <p> Nos Livraisons </p>
                     
@@ -106,7 +106,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                         </div>
                     </div>
                     <div class="col-md-3">  
-                        <h6><a href="/contact" class="text-light">Nous contacter</a>&#160;et&#160;<a href="/sav" class="text-light"> >notre SAV</a></h6><br>   
+                        <h6><a href="/contact" class="text-light">Nous contacter</a>&#160;et&#160;<a href="/sav" class="text-light">notre SAV</a></h6><br>   
                         <em>Nous sommes ouvert de 9h à 19h30 du Lundi au Samedi</em>
                         <h6 class="text-left d-block d-sm-none mb-3">- La Nimes'Alerie -</h6>
                     </div>
