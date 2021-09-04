@@ -23,7 +23,7 @@ class ContactController extends AbstractController
 
         if ($form->isSubmitted() && $form-> isValid()) {
             $data= $form->getData();
-
+            $afficher = "Votre demande de contact à bien été envoyé , vous recevrai une réponse dans les 48h";
             $message = (new Email())
             ->from($data['email'])
             ->to('melissa.mangione@gmail.com')
@@ -32,7 +32,7 @@ class ContactController extends AbstractController
 
             $mailer->send($message);
 
-            return $this->redirectToRoute('contact');
+            return $this->redirectToRoute('contact_succes');
         }
 
         return $this->render('contact/index.html.twig', [
@@ -40,5 +40,16 @@ class ContactController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/contact/envoyer", name="contact_succes")
+     */
+    public function message()
+    {
+        return $this->render('contact/contactSuccess.html.twig', [
+            'controller_name' => 'AquarioController',
+        ]);
+    }
 }
+
 

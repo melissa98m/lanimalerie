@@ -24,6 +24,14 @@ class ContactType extends AbstractType{
             ->add('nom', TextType::class)
             ->add('prenom' , TextType::class)
             ->add('email', EmailType::class)
+            ->add('motif' , ChoiceType::class , [ 'choices' => ['Demande de renseignements' => 'Demande de renseignements' ,
+                                                                'Demande de devis pour service 3.0' => 'Demande de devis service 3.0' ,
+                                                                'Recrutement ' => 'Recrutement'],
+                                                                'required' => true ,
+                                                                'mapped' => false,
+                                                                'multiple' => false
+                                                                    ]
+                                                                )
             ->add('message', TextareaType::class, ['attr'=> ['rows'=> 5]])
             ->add('envoyer', SubmitType::class)
         ;

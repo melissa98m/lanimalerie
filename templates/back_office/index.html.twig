@@ -20,15 +20,15 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 <img src="{{ asset('images/logo.png') }}" alt="logo"/>
             </div>
             {% endblock %}
-  <a class="navbar-brand" href="#">BackOffice Nimes'Alerie</a>
+  <a class="navbar-brand" href="{{ path('back_office')}}">BackOffice Nimes'Alerie</a>
   <button class="navbar-toggler"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-     <li class="nav-item" > <a class="nav-link active" href="{{ path('home')}}">Acceuil<span class="sr-only">(current)</span></a></li>
+     <li class="nav-item" > <a class="nav-link active" href="{{ path('home')}}">Accueil<span class="sr-only">(current)</span></a></li>
       <li class="nav-item" ><a class=" nav-link active" href="{{ path('liste_product')}}">Nos Produits</a></li>
-     <li class="nav-item" > <a class="nav-link active " href="service">Service 3.0</a></li>
+     <li class="nav-item" > <a class="nav-link active " href="/service">Service 3.0</a></li>
      <li class="nav-item"> <a class="nav-link active" href="{{ path('contact')}}">Contact</a></li>
     </ul>
     </div>
@@ -65,6 +65,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             <h3>Gestion bases de données</h3>
             <li><a href="{{ path('order_index') }}">Gerer les commandes</a></li>
             <li><a href="{{ path('user_index') }}">Gerer les utilisateur</a></li>
+            <li><a href="/api">Voir l'api</a></li>
             
             </ul>
 
@@ -90,7 +91,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     
                     <div class="col-lg-3">
 
-                        <a href="/cgv" >Mention legales et CGV</a> <br>
+                        <a href="/cgv" >Mentions legales et CGV</a> <br>
                         <br>
                         <p> Nos Livraisons </p>
                     

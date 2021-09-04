@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
+{% block tilte %}<title>Demande de contact envoyée</title>{% endblock %}
 
-{% block title %}<title>Gerer mes adresses</title>{% endblock %}
 
-
- {% block stylesheets %}
+{% block stylesheets %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
 integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
@@ -24,15 +23,15 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 <img src="{{ asset('images/logo.png') }}" alt="logo"/>
             </div>
             {% endblock %}
-  <a class="navbar-brand" href="{{ path('home')}}">La Nimes'Alerie</a>
+  <a class="navbar-brand" href="#">La Nimes'Alerie</a>
   <button class="navbar-toggler"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-     <li class="nav-item" > <a class="nav-link active" href="{{ path('home')}}">Accueil<span class="sr-only">(current)</span></a></li>
+     <li class="nav-item" > <a class="nav-link active" href="{{ path('home')}}">Acceuil<span class="sr-only">(current)</span></a></li>
       <li class="nav-item" ><a class=" nav-link active" href="{{ path('liste_product')}}">Nos Produits</a></li>
-     <li class="nav-item" > <a class="nav-link active " href="/service">Service 3.0</a></li>
+     <li class="nav-item" > <a class="nav-link active " href="service">Service 3.0</a></li>
      <li class="nav-item"> <a class="nav-link active" href="{{ path('contact')}}">Contact</a></li>
     </ul>
     </div>
@@ -48,7 +47,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                              <a href="{{ path('app_login') }}" class="text-light" >Connexion</a>|<a href="{{ path('app_register') }}" class="text-light m-3">S'inscrire</a>
         
                           {% endif %}
-
+                    
                     
                    
            
@@ -58,35 +57,17 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 {% block main %}
-<h2>Gerer mes Adresses</h2>
-   
-    <p>Ici vous trouverez toutes vos adresses , vous pouvez les gerer </p>
-   <a href="{{ path('adress_new') }}" class="btn btn-primary btn-sm float-right">Ajouter une adresse</a>
-   
-   
-   <a href="{{ path('mon_compte') }}"> Retour à "Mon compte" </a>
-   <hr>
 
-     {% if app.user.adress | length == 0  %}
-    <p class="text-center">Vous n'avez pas encore ajouté d'adresses à votre compte, 
-    pour en créer un Cliquez ici</p>
-    {% else %}
-    <div class="row">
-    {%  for adress in app.user.adress %}
-     <div class="col-md-3">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-         <h5 class="card-title">{{ adress.firstname }} {{ adress.lastname }}</h5>
-        <p class="card-text">{{ adress.numero}} {{ adress.name }}</p>
-         <p class="card-text">{{ adress.codepostal}} {{ adress.ville }}</p>
-    
-    <a href="{{ path('adress_edit' , {'id': adress.id}) }}" class="text-primary">Modifier</a> |
-    <a href="{{ path('adress_delete', {'id': adress.id}) }}" class="text-danger">Supprimer</a>
-    </div>
-    </div>
-  </div>
-{% endfor %}
-   {% endif %}
+<h2 class="text-success">Votre message à bien été envoyé</h2>
+
+<p>Une reponse vous sera envoyé dans les 48h , Si toute fois vous ne recevez aucune réponse n'hésitez pas à nous appeler au <strong>+0616161616</strong> <br>
+ En vous souhaitant une bonne journée <br>
+ <strong>Léquipe la Nimes'Alerie</strong></p>
+
+ <a href="{{ path('home') }}"><-Retourner à l'accueil</a>
+
+
+
 
 
 {% endblock %}
@@ -108,7 +89,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     
                     <div class="col-lg-3">
 
-                        <a href="/cgv" class="text-light">Mentions legales et CGV</a> <br>
+                        <a href="/cgv" class="text-light">Mention legales et CGV</a> <br>
                         <br>
                         <p> Nos Livraisons </p>
                     

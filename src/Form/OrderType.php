@@ -6,6 +6,7 @@ use App\Entity\Carrier ;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -30,6 +31,16 @@ class OrderType extends AbstractType
             'class' => Carrier::class ,
             'multiple' => false ,
             'expanded' => true ,
+        ])
+        ->add('paiement' , ChoiceType::class , [
+            'label' => 'Choississez votre moyen de paiement' ,
+            'required' => true ,
+            'multiple' => false ,
+            'expanded' => true ,
+            
+            'choices' => [ 'Carte bleu' => 0,
+                'Paypal' => 1]
+        
         ])
         ->add('submit', SubmitType::class ,[
             'label' => 'Valider ma commande',

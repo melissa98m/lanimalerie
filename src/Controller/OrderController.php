@@ -141,16 +141,20 @@ class OrderController extends AbstractController
 
     public function add(Cart $cart , Request $request)
     {
-
+        
 
         $form = $this->createForm(OrderType::class , null , [
-            'user' => $this->getUser()
+            'user' => $this->getUser(),
+           
 
         ]);
 
         $form->handleRequest($request);
         if($form->isSubmitted()  && $form->isValid()){
             
+
+            $paiement = $form['paiement']->getData(); 
+
             $date = new \DateTime();
             $carriers = $form->get('carriers')->getData();
             $delivery = $form->get('adresses')->getData(); //recuperer le contenue champ upload envoyé
@@ -171,6 +175,7 @@ class OrderController extends AbstractController
                 $order->setCarrierPrice( $carriers->getPrice());
                 $order->setDelivery($delivrey_content);
                 $order->setState(1);
+
 
                 
 
@@ -200,7 +205,8 @@ class OrderController extends AbstractController
             'cart' => $cart->getFull(),
             'carriers' => $carriers,
             'delivery' => $delivery, 
-            'order'  => $orderDetails
+            'order'  => $orderDetails,
+            'paiement' => $paiement
         ]);
     }
         return $this->redirectToRoute('cart');

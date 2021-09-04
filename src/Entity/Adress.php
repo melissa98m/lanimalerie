@@ -7,7 +7,7 @@ use App\Repository\AdressRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(normalizationContext={"groups"={"read"}, "enable_max_depth"=true})
  * @ORM\Entity(repositoryClass=AdressRepository::class)
  */
 class Adress

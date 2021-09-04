@@ -78,7 +78,17 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
   {{ carriers.description }}<br>
   {{ carriers.price}}€
   </div>
+  <hr>
+   <strong>Mon moyen de paiement :</strong>
+  <div class="form-check">
+  {% if paiement == 0 %}
+    Carte bleu 
+    {% else %}
+    Paypal
+    {% endif %}
+  </div>
 </div>
+
 <div class="col-md-7">
 <div class="text-center">
 <b>Ma commande</b><br>

@@ -7,7 +7,7 @@ use App\Repository\OrderDetailsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(normalizationContext={"groups"={"read"}, "enable_max_depth"=true})
  * @ORM\Entity(repositoryClass=OrderDetailsRepository::class)
  */
 class OrderDetails

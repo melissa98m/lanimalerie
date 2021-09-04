@@ -10,7 +10,7 @@ integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEB
 crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
- <link rel="stylesheet" href="{{ asset('css/front.css') }}" type="text/css">
+ <link rel="stylesheet" href="{{ asset('css/lanimealerie.css') }}" type="text/css">
 
 {% endblock %}
     
@@ -32,7 +32,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     <ul class="navbar-nav mr-auto">
      <li class="nav-item" > <a class="nav-link active" href="{{ path('home')}}">Acceuil<span class="sr-only">(current)</span></a></li>
       <li class="nav-item" ><a class=" nav-link active" href="{{ path('liste_product')}}">Nos Produits</a></li>
-     <li class="nav-item" > <a class="nav-link active " href="service">Service 3.0</a></li>
+     <li class="nav-item" > <a class="nav-link active " href="/service">Service 3.0</a></li>
      <li class="nav-item"> <a class="nav-link active" href="{{ path('contact')}}">Contact</a></li>
     </ul>
     </div>
@@ -57,7 +57,69 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 {% endblock %}
 
 
+
+
+
 {% block main %}
+
+<div id="head">
+		<div class="container">
+			<div class="row">
+				<h1 class="lead">Envoyer votre animal dans l'espace</h1>
+				<p class="tagline">Grace à notre service unique envoyer votre animal dans l'espace</p>
+				<p><a class="btn btn-default btn-lg"  href="{{ path('contact')}}" role="button">Demander un devis</a> <a class="btn btn-default btn-lg" href="#detail" role="button">Plus de détails</a></p>
+			</div>
+		</div>
+	</div>
+
+<div class="jumbotron top-space">
+		<div class="container">
+			
+			<h3 class="text-center thin mt-3">Notre Service 3.0</h3>
+			
+			<div class="row mt-5" id="detail">
+				<div class="col-md-3 col-sm-6 highlight text-center">
+					<div class="h-caption"><h4>Sécurisé</h4></div>
+					<div class="h-body text-center">
+						<p>Envoyer votre animal dans l'espace , c'est maintenant possible et sécurisé. Nous avons un partenariat
+                         avec l'US Army qui veille à toute la sécurité nécessaire
+                        </p>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-6 highlight text-center">
+					<div class="h-caption"><h4>Le prix</h4></div>
+					<div class="h-body text-center">
+						<p>Le prix est variable ! Selon le type d'animal, son poids et les ressources qu'il faut. 
+                        Par exemple envoyer un chien de 50 kg est plus difficile qu'un chat de 8kg
+                        </p>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-6 highligh text-center">
+					<div class="h-caption"><h4>Comment c'est possible?</h4></div>
+					<div class="h-body text-center">
+						<p>Comme pour les être humain! Votr animal sera accomagner durant ce voyage par des professionnels ( Astonautes , véterinaires)</p>
+					</div>
+				</div>
+				
+			</div> <!-- /row  -->
+		
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {% endblock %}
 {% block footer %}

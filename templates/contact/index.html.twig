@@ -1,102 +1,65 @@
 {% extends 'base.html.twig' %}
-{% block title %}Nous Contacter{% endblock %}
+{% block title %}<title>Nous Contacter</title>{% endblock %}
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
-         {% block stylesheets %}
-{# public/css/style.css #}
+
+
+ {% block stylesheets %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
+integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
+crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
-<link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
-{# public/js/script.js #}
+ <link rel="stylesheet" href="{{ asset('css/front.css') }}" type="text/css">
+
 {% endblock %}
     
   
 {% block body %}
 {% block header %}
-    <header class="container-fluid">
-
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <header>
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             {% block images %}
             <div class="d-inline-block">
-                <img src="{{ asset('images/logo.png') }}" alt="Symfony!"/>
+                <img src="{{ asset('images/logo.png') }}" alt="logo"/>
             </div>
             {% endblock %}
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link active" href="/home" tabindex="-1" aria-disabled="true">Accueil </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/dog" tabindex="-1"
-                            aria-disabled="true">Chiens</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="" tabindex="-1"
-                            aria-disabled="true">Chats</a>
-                    </li>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="" tabindex="-1"
-                            aria-disabled="true">NAC</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="" tabindex="-1"
-                            aria-disabled="true">Aquariophilie</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="" tabindex="-1" aria-disabled="true">Service 3.0</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="" tabindex="-1"
-                            aria-disabled="true">Promotions</a>
-                    </li>
-                </ul>
-                <div class="d-flex">
-                    <form class="d-flex my-2 my-lg-0">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                </div>
-                <ul class="navbar text-end">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <li class="nav-item">
-                            <div class="container">
-                                <div class="text-center">
-                                    <img src="images/panier.png" alt="panier">
-                                    <a class="nav-link active text-center" href="/panier" tabindex="-1"
-                                        aria-disabled="true" active aria-current="page">Panier</a>
-                                </div>
-                        </li>
-                        <li class="nav-item">
-                           <!-- <div class="text-center">
-                                <img src="./img/account.png">
-                                <a class="nav-link active" href="compte.html" tabindex="-1" aria-disabled="true" active
-                                    aria-current="page">Mon compte</a>
-                            </div> !-->
-                            {% if app.user %}
-                            <div class="text-center mb-3">
-                             <h5>Mon compte</h5>
-                             <p>Connecté comme {{ app.user.username }},<br> 
-                             <a href="{{ path('app_logout') }}">Logout</a>
-                             </div>
+  <a class="navbar-brand" href="#">La Nimes'Alerie</a>
+  <button class="navbar-toggler"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+     <li class="nav-item" > <a class="nav-link active" href="{{ path('home')}}">Acceuil<span class="sr-only">(current)</span></a></li>
+      <li class="nav-item" ><a class=" nav-link active" href="{{ path('liste_product')}}">Nos Produits</a></li>
+     <li class="nav-item" > <a class="nav-link active " href="service">Service 3.0</a></li>
+     <li class="nav-item"> <a class="nav-link active" href="{{ path('contact')}}">Contact</a></li>
+    </ul>
+    </div>
+    
+    <div class="m-4 p-2">
+     <a href="{{ path('cart')}}"><img src="{{ asset('images/shopping-cart.png') }}" alt="cart" height='24px'></a>
+     </div>
+                          {% if app.user %}
+                           
+                           <a href={{ path('mon_compte') }} class="text-light">Mon compte</a> | <a href="{{ path('app_logout') }}" class="text-light m-3"> Déconnexion</a>
+                             
                             {% else %}
-                            <div class="text-end">
-                                <button type="button" class="btn btn-outline-success"> <a href="/login" tabindex="-1"
-                                        aria-disabled="true" active aria-current="page"
-                                        id="connection">Connexion</a></button>
-                                <button type="button" class="btn btn-outline-success"><a href="/register">S'inscrire</a></button>
-                            </div>
-                            {% endif %}
-                    </div>
+                             <a href="{{ path('app_login') }}" class="text-light" >Connexion</a>|<a href="{{ path('app_register') }}" class="text-light m-3">S'inscrire</a>
+        
+                          {% endif %}
 
-            </div>
+                    
+                   
+           
         </nav>
     </header>
 {% endblock %}
+
+
+
+
 
  
     {% block main %}
@@ -116,45 +79,53 @@
        
     
        {{ form_row(form.email, {'label' : "Votre email"})}}
+       {{ form_row(form.motif, {'label' : "Motif"})}}
       {{form_row(form.message , {'label' : "Votre message"}) }}
      {{ form_row(form.envoyer , {'label' : 'Envoyer message'})}}
     {{form_end(form) }} 
    </div>
+   
+
+  
+
+   
    {% endblock %}
-  {% block footer %}
+ 
+
+ {% block footer %}
         <footer>
-            <div class="container-fluid">
+            <div class="container-fluid bg-dark text-light">
                 <div class="row">
                         <div class="col-md-3 pt-3 pt-md-0">
                <h6 class="">- Suivez-nous -</h6>
                <div class="d-flex justify-content">
-                  <a href="" target="_blank"><img src="images/facebook.png"></a>
-                  <a href="" target="_blank"><img src="images/instagram.png" class="mx-4"></a>
-                  <a href="" target="_blank"><img src="images/twitter.png"></a>
+                 <i class="fab fa-facebook-square fa-1x mx-2"></i>
+                  <i class="fab fa-instagram  fa-1x mx-2"></i>
+                  <i class="fab fa-twitter-square fa-1x mx-2"></i>
                </div>
                         
 
-                        <a href="#" class="">Qui sommes-nous? </a>
+                        <a href="#" class="text-light">Qui sommes-nous? </a>
                     </div>
                     
                     <div class="col-lg-3">
 
-                        <a href="/cgv" class="">Mention legales et CGV</a> <br>
+                        <a href="/cgv" class="text-light">Mention legales et CGV</a> <br>
                         <br>
                         <p> Nos Livraisons </p>
                     
                         
                     </div>
                     <div class="col-md-3 pt-3 pt-md-0">
-                        <a href="#" class="">Politique de confidentialité </a></p>
+                        <a href="#" class="text-light">Politique de confidentialité </a></p>
                         <h6>Moyens de paiements</h6>
-                        <div class="d-flex justify-content">
-                        <img src="images/paypal.png"></a>
-                        <img src="images/visa.png"></a>
+                        <div class="d-flex text-center justify-content">
+                        <i class="fab fa-paypal fa-1x mx-2"></i>
+                        <i class="fab fa-cc-visa fa-1x mx-2"></i>
                         </div>
                     </div>
                     <div class="col-md-3">  
-                        <h6><a href="/contact" class="">Nous contacter</a>&#160;et&#160;<a href="/sav" >notre SAV</a></h6><br>   
+                        <h6><a href="/contact" class="text-light">Nous contacter</a>&#160;et&#160;<a href="/sav" class="text-light"> >notre SAV</a></h6><br>   
                         <em>Nous sommes ouvert de 9h à 19h30 du Lundi au Samedi</em>
                         <h6 class="text-left d-block d-sm-none mb-3">- La Nimes'Alerie -</h6>
                     </div>
@@ -180,20 +151,4 @@
 
         <script src="{{ asset('js/script.js') }}"></script>
 {% endblock %}
-
-
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-

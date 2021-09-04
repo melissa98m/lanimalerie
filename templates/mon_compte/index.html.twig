@@ -24,13 +24,13 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 <img src="{{ asset('images/logo.png') }}" alt="logo"/>
             </div>
             {% endblock %}
-  <a class="navbar-brand" href="#">La Nimes'Alerie</a>
+  <a class="navbar-brand" href="{{ path('home')}}">La Nimes'Alerie</a>
   <button class="navbar-toggler"  data-toggle="collapse" data-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-     <li class="nav-item" > <a class="nav-link active" href="{{ path('home')}}">Acceuil<span class="sr-only">(current)</span></a></li>
+     <li class="nav-item" > <a class="nav-link active" href="{{ path('home')}}">Accueil<span class="sr-only">(current)</span></a></li>
       <li class="nav-item" ><a class=" nav-link active" href="{{ path('liste_product')}}">Nos Produits</a></li>
      <li class="nav-item" > <a class="nav-link active " href="service">Service 3.0</a></li>
      <li class="nav-item"> <a class="nav-link active" href="{{ path('contact')}}">Contact</a></li>
@@ -59,6 +59,14 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 {% block main %}
 <h2 class="text-center">Gerer mon compte</h2>
 
+{% if is_granted('ROLE_ADMIN') %}
+
+  <p> Bienvenue cher administrateur , ici tu pourra gerer ton compte comme un client normal , mais aussi accéder au BackOffice </p>
+
+{% else %}
+
+<p>Bienvenue sur votre espace utilisateur , ici vous pourrez gerer vos adreeses , commandes ..</p>
+{% endif %}
 
 <ul class="text-center">
 
@@ -70,6 +78,11 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 <li>Modifier mon mot de passe</li>
 
 </ul>
+{% if is_granted('ROLE_ADMIN') %}
+
+  <a href="{{ path('back_office')}}">Aller sur le backoffice -> </a>
+
+{% endif %}
 
 
 
@@ -79,27 +92,27 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             <div class="container-fluid bg-dark text-light">
                 <div class="row">
                         <div class="col-md-3 pt-3 pt-md-0">
-               <h6 class="">- Suivez-nous -</h6>
-               <div class="d-flex justify-content">
+               <h6 class="text-light">- Suivez-nous -</h6>
+               <div class="d-flex justify-content text-light">
                  <i class="fab fa-facebook-square fa-1x mx-2"></i>
                   <i class="fab fa-instagram  fa-1x mx-2"></i>
                   <i class="fab fa-twitter-square fa-1x mx-2"></i>
                </div>
                         
 
-                        <a href="#" class="text-light">Qui sommes-nous? </a>
+                        <a href="#presentation" class="text-light">Qui sommes-nous? </a>
                     </div>
                     
                     <div class="col-lg-3">
 
-                        <a href="/cgv" class="text-light">Mention legales et CGV</a> <br>
+                        <a href="/cgv" class="text-light">Mentions legales et CGV</a> <br>
                         <br>
                         <p> Nos Livraisons </p>
                     
                         
                     </div>
                     <div class="col-md-3 pt-3 pt-md-0">
-                        <a href="#" class="text-light">Politique de confidentialité </a></p>
+                        <a href="#" class="text-light">Politiques de confidentialité </a></p>
                         <h6>Moyens de paiements</h6>
                         <div class="d-flex text-center justify-content">
                         <i class="fab fa-paypal fa-1x mx-2"></i>
@@ -107,7 +120,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                         </div>
                     </div>
                     <div class="col-md-3">  
-                        <h6><a href="/contact" class="text-light">Nous contacter</a>&#160;et&#160;<a href="/sav" class="text-light"> >notre SAV</a></h6><br>   
+                        <h6><a href="/contact" class="text-light">Nous contacter</a>&#160;et&#160;<a href="/sav" class="text-light">notre SAV</a></h6><br>   
                         <em>Nous sommes ouvert de 9h à 19h30 du Lundi au Samedi</em>
                         <h6 class="text-left d-block d-sm-none mb-3">- La Nimes'Alerie -</h6>
                     </div>

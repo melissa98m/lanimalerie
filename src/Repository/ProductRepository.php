@@ -66,11 +66,14 @@ class ProductRepository extends ServiceEntityRepository
     if(!empty($search->categories)){
         $query = $query
         ->andWhere('p.name LIKE :string')
-        ->setParameter('string', "%{$search->string}%");
+        ->setParameter('string', " %{$search->string}% ");
     }
      
    return $query->getQuery()->getResult();
     }
+
+
+
 
     public function findOnetById($id)
     {

@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(normalizationContext={"groups"={"read"}, "enable_max_depth"=true})
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
  */
 class Category
