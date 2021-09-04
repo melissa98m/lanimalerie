@@ -37,6 +37,12 @@ class Category
      */
     private $products;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="parent")
+     */
+    private $parent;
+
+  
     
 
     
@@ -46,7 +52,6 @@ class Category
         $this->products = new ArrayCollection();
        
     }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -81,6 +86,8 @@ class Category
     /**
      * @return Collection|Product[]
      */
+
+    
     public function getProducts(): Collection
     {
         return $this->products;
@@ -108,6 +115,40 @@ class Category
         return $this->name;
     }
 
-    
-}
+    public function getParent()
+    {
+        return $this->parent;
+    }
 
+    public function setParent(?self $parent): self
+    {
+        $this->parent = $parent;
+
+        return $this;
+
+    }
+    public function addParent(self $parent): self
+    {
+        if (!$this->parent->contains($parent)) {
+            $this->parent[] = $parent;
+            $parent->setParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParent(self $parent): self
+    {
+        if ($this->parent->removeElement($parent)) {
+            // set the owning side to null (unless already changed)
+            if ($parent->getParent() === $this) {
+                $parent->setParent(null);
+            }
+        }
+
+        return $this;
+    }
+
+   
+
+}

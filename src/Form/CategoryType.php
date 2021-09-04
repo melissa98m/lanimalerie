@@ -21,6 +21,11 @@ class CategoryType extends AbstractType
         $builder
         ->add('name' , TextType::class)
         ->add('Description', TextType::class)
+        ->add('parent' , EntityType::class , array('class' => Category::class, 
+        'choice_label' => 'name' , 
+        'required' => false , 
+        'multiple' => true , 
+        'expanded' => true))
         
 ;  }
 

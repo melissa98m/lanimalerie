@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}<title>Service 3.0</title>{% endblock %}
+{% block title %}<title>Mot de passe oublié</tile>{% endblock %}
 
 
  {% block stylesheets %}
@@ -10,7 +10,7 @@ integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEB
 crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
- <link rel="stylesheet" href="{{ asset('css/lanimealerie.css') }}" type="text/css">
+ <link rel="stylesheet" href="{{ asset('css/front.css') }}" type="text/css">
 
 {% endblock %}
     
@@ -30,7 +30,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-     <li class="nav-item" > <a class="nav-link active" href="{{ path('home')}}">Accueil<span class="sr-only">(current)</span></a></li>
+     <li class="nav-item" > <a class="nav-link active" href="{{ path('home')}}">Acceuil<span class="sr-only">(current)</span></a></li>
       <li class="nav-item" ><a class=" nav-link active" href="{{ path('liste_product')}}">Nos Produits</a></li>
      <li class="nav-item" > <a class="nav-link active " href="/service">Service 3.0</a></li>
      <li class="nav-item"> <a class="nav-link active" href="{{ path('contact')}}">Contact</a></li>
@@ -56,101 +56,17 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     </header>
 {% endblock %}
 
-
-
-
-
 {% block main %}
+<div class="block-small">
+<form method="post">
 
-<div id="head">
-		<div class="container">
-			<div class="row">
-				<h1 class="lead">Envoyer votre animal dans l'espace</h1>
-				<p class="tagline">Grace à notre service unique envoyer votre animal dans l'espace</p>
-				<p><a class="btn btn-default btn-lg"  href="{{ path('contact')}}" role="button">Demander un devis</a> <a class="btn btn-default btn-lg" href="#detail" role="button">Plus de détails</a></p>
-			</div>
-		</div>
-	</div>
-
-<div class="jumbotron top-space">
-		<div class="container">
-			
-			<h3 class="text-center thin mt-3">Notre Service 3.0</h3>
-			
-			<div class="row mt-5" id="detail">
-				<div class="col-md-3 col-sm-6 highlight text-center">
-					<div class="h-caption"><h4>Sécurisé</h4></div>
-					<div class="h-body text-center">
-						<p>Envoyer votre animal dans l'espace , c'est maintenant possible et sécurisé. Nous avons un partenariat
-                         avec l'US Army qui veille à toute la sécurité nécessaire
-                        </p>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 highlight text-center">
-					<div class="h-caption"><h4>Le prix</h4></div>
-					<div class="h-body text-center">
-						<p>Le prix est variable ! Selon le type d'animal, son poids et les ressources qu'il faut. 
-                        Par exemple envoyer un chien de 50 kg est plus difficile qu'un chat de 8kg
-                        </p>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 highligh text-center">
-					<div class="h-caption"><h4>Comment c'est possible?</h4></div>
-					<div class="h-body text-center">
-						<p>Comme pour les être humain! Votr animal sera accomagner durant ce voyage par des professionnels ( Astonautes , véterinaires)</p>
-					</div>
-				</div>
-				
-			</div> <!-- /row  -->
-		
-		</div>
-	</div>
-    <div class="container">
-
-		<h2 class="text-center top-space">Questions frenquentes</h2>
-		<br>
-
-		<div class="row">
-			<div class="col-sm-6">
-				<h3>Es-ce sécurisé?</h3>
-				<p>Oui , grâce à notre partenariat avec l'US Army nous garantissant la sécurité de vos animaux</p>
-			</div>
-			<div class="col-sm-6">
-				<h3>Quel est la limite de poids?</h3>
-				<p>Il n'y a pas de limite de poids , mais votre animal doit etre en bonne santé pour aller dans l'espace(d'ailleur un certificat veterinaire est obligatoire)
-					</p>
-			</div>
-		</div> <!-- /row -->
-
-		<div class="row">
-			<div class="col-sm-6">
-				<h3>Quel est le prix?</h3>
-				<p>
-					
-				</p>
-			</div>
-			<div class="col-sm-6">
-				<h3>Can you customize this template for me?</h3>
-				<p>Yes, I can. Please drop me a line to sergey-at-pozhilov.com and describe your needs in details. Please note, my services are not cheap.</p>
-			</div>
-		</div> <!-- /row -->
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <h1 class="h3 mb-3 font-weight-normal">Mot de passe oublié</h1>
+    <label for="inputEmail">Votre Email</label>
+    <input type="email"  name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+     
+     <button class="btn btn-info btn-block mt-3" type="submit">Valider</button>
+</form>
+</div>
 {% endblock %}
 {% block footer %}
         <footer>
@@ -212,3 +128,5 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script src="{{ asset('js/script.js') }}"></script>
 {% endblock %}
 {% endblock %}
+
+
