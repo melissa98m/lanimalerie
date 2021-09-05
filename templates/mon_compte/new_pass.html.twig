@@ -1,16 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}<title>Gerer mon compte</title>{% endblock %}
+{% block title %}Changer votre mot de passe {% endblock %}
 
-
- {% block stylesheets %}
+{% block stylesheets %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
 integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
 crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
- <link rel="stylesheet" href="{{ asset('css/front.css') }}" type="text/css">
+ <link rel="stylesheet" href="{{ asset('css/lanimealerie.css') }}" type="text/css">
 
 {% endblock %}
     
@@ -57,50 +56,43 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 {% endblock %}
 
 {% block main %}
-<h2 class="text-center">Gerer mon compte</h2>
 
-{% if is_granted('ROLE_ADMIN') %}
-
-  <p> Bienvenue cher administrateur , ici tu pourra gerer ton compte comme un client normal , mais aussi accéder au BackOffice </p>
-
-{% else %}
-
-<p>Bienvenue sur votre espace utilisateur , ici vous pourrez gerer vos adreeses , commandes ..</p>
+<h1>Modifier votre mot de passe</h1>
+{% if notification %}
+<div class="alert alert-info">{{ notification }}</div>
 {% endif %}
+{{ form(form) }}
 
-<ul class="text-center">
-
-<h4>Mon Compte</h4>
-<li><a href="{{ path('account_adresses')}}">Mes adresses</a></li>
-<li>Mes moyens de paiement</li>
-
-<li><a href="{{ path('account_orders')}}">Mes commandes</li>
-<li><a href="{{ path('new_password')}}">Modifier mon mot de passe</a></li>
-
-</ul>
-{% if is_granted('ROLE_ADMIN') %}
-
-  <a href="{{ path('back_office')}}">Aller sur le backoffice -> </a>
-
-{% endif %}
+<hr>
 
 
+
+
+
+
+
+
+
+
+<hr>
+
+<a href="{{ path('mon_compte') }}">Retourner sur "Mon compte"</a>
 
 {% endblock %}
-{% block footer %}
+ {% block footer %}
         <footer>
             <div class="container-fluid bg-dark text-light">
                 <div class="row">
                         <div class="col-md-3 pt-3 pt-md-0">
-               <h6 class="text-light">- Suivez-nous -</h6>
-               <div class="d-flex justify-content text-light">
+               <h6 class="">- Suivez-nous -</h6>
+               <div class="d-flex justify-content">
                  <i class="fab fa-facebook-square fa-1x mx-2"></i>
                   <i class="fab fa-instagram  fa-1x mx-2"></i>
                   <i class="fab fa-twitter-square fa-1x mx-2"></i>
                </div>
                         
 
-                        <a href="#presentation" class="text-light">Qui sommes-nous? </a>
+                        <a href="#" class="text-light">Qui sommes-nous? </a>
                     </div>
                     
                     <div class="col-lg-3">
@@ -112,7 +104,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                         
                     </div>
                     <div class="col-md-3 pt-3 pt-md-0">
-                        <a href="#" class="text-light">Politiques de confidentialité </a></p>
+                        <a href="/PolitiqueConfi" class="text-light">Politique de confidentialité </a></p>
                         <h6>Moyens de paiements</h6>
                         <div class="d-flex text-center justify-content">
                         <i class="fab fa-paypal fa-1x mx-2"></i>
@@ -120,7 +112,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                         </div>
                     </div>
                     <div class="col-md-3">  
-                        <h6><a href="/contact" class="text-light">Nous contacter</a>&#160;et&#160;<a href="/sav" class="text-light">notre SAV</a></h6><br>   
+                        <h6><a href="/contact" class="text-light">Nous contacter</a>&#160;et&#160;<a href="/sav" class="text-light"> >notre SAV</a></h6><br>   
                         <em>Nous sommes ouvert de 9h à 19h30 du Lundi au Samedi</em>
                         <h6 class="text-left d-block d-sm-none mb-3">- La Nimes'Alerie -</h6>
                     </div>

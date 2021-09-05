@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}<title>Gerer mon compte</title>{% endblock %}
+{% block title %}<title>Renouveller mot de passe</tile>{% endblock %}
 
 
  {% block stylesheets %}
@@ -30,7 +30,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-     <li class="nav-item" > <a class="nav-link active" href="{{ path('home')}}">Accueil<span class="sr-only">(current)</span></a></li>
+     <li class="nav-item" > <a class="nav-link active" href="{{ path('home')}}">Acceuil<span class="sr-only">(current)</span></a></li>
       <li class="nav-item" ><a class=" nav-link active" href="{{ path('liste_product')}}">Nos Produits</a></li>
      <li class="nav-item" > <a class="nav-link active " href="/service">Service 3.0</a></li>
      <li class="nav-item"> <a class="nav-link active" href="{{ path('contact')}}">Contact</a></li>
@@ -57,50 +57,26 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 {% endblock %}
 
 {% block main %}
-<h2 class="text-center">Gerer mon compte</h2>
-
-{% if is_granted('ROLE_ADMIN') %}
-
-  <p> Bienvenue cher administrateur , ici tu pourra gerer ton compte comme un client normal , mais aussi accéder au BackOffice </p>
-
-{% else %}
-
-<p>Bienvenue sur votre espace utilisateur , ici vous pourrez gerer vos adreeses , commandes ..</p>
-{% endif %}
-
-<ul class="text-center">
-
-<h4>Mon Compte</h4>
-<li><a href="{{ path('account_adresses')}}">Mes adresses</a></li>
-<li>Mes moyens de paiement</li>
-
-<li><a href="{{ path('account_orders')}}">Mes commandes</li>
-<li><a href="{{ path('new_password')}}">Modifier mon mot de passe</a></li>
-
-</ul>
-{% if is_granted('ROLE_ADMIN') %}
-
-  <a href="{{ path('back_office')}}">Aller sur le backoffice -> </a>
-
-{% endif %}
-
-
-
+<div class="block-small">
+  {% for message in app.flashs|'notice' %}
+    <div class="alert alert-info">{{ message }}</div>
+    {{ form(form) }}
+</div>
 {% endblock %}
 {% block footer %}
         <footer>
             <div class="container-fluid bg-dark text-light">
                 <div class="row">
                         <div class="col-md-3 pt-3 pt-md-0">
-               <h6 class="text-light">- Suivez-nous -</h6>
-               <div class="d-flex justify-content text-light">
+               <h6 class="">- Suivez-nous -</h6>
+               <div class="d-flex justify-content">
                  <i class="fab fa-facebook-square fa-1x mx-2"></i>
                   <i class="fab fa-instagram  fa-1x mx-2"></i>
                   <i class="fab fa-twitter-square fa-1x mx-2"></i>
                </div>
                         
 
-                        <a href="#presentation" class="text-light">Qui sommes-nous? </a>
+                        <a href="#" class="text-light">Qui sommes-nous? </a>
                     </div>
                     
                     <div class="col-lg-3">
@@ -112,7 +88,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                         
                     </div>
                     <div class="col-md-3 pt-3 pt-md-0">
-                        <a href="#" class="text-light">Politiques de confidentialité </a></p>
+                        <a href="#" class="text-light">Politique de confidentialité </a></p>
                         <h6>Moyens de paiements</h6>
                         <div class="d-flex text-center justify-content">
                         <i class="fab fa-paypal fa-1x mx-2"></i>
@@ -147,3 +123,5 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script src="{{ asset('js/script.js') }}"></script>
 {% endblock %}
 {% endblock %}
+
+

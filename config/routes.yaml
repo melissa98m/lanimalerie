@@ -5,7 +5,7 @@
 # config/routes.yaml
 
 app_cgv:
-  path: /cgv/{title}
+  path: /cgv
   controller: App\Controller\ContentController::cgv
   defaults:
  
@@ -13,14 +13,14 @@ app_cgv:
 # page Mention légale
 
 app_MentionLegale:
-  path: /MentionLegale/{title}
+  path: /MentionLegale
   controller: App\Controller\ContentController::mention
   defaults:
     
 
 #page Politique Confidentialité
 app_PolitiqueConfi:
-  path: /PolitiqueConfi/{title}
+  path: /PolitiqueConfi
   controller: App\Controller\ContentController::politique
   defaults:
   

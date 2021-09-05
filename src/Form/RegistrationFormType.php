@@ -6,7 +6,9 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -38,8 +40,25 @@ class RegistrationFormType extends AbstractType
                 ])
             ]
         ] )
-        ->add('ConfirmPassword', PasswordType::class, [
-            'mapped' => false ])
+        ->add('plainPassword', RepeatedType::class, [
+            'type'=> PasswordType::class,
+            'invalid_message' => 'le mot de passe et la confirmation doivent correspondre',
+            'label' => 'Confirmier le mot de passe',
+            'required' => true,
+            'mapped' => false ,
+            'first_options' => [
+                'label'=> 'Mot de passe' ,
+                'attr' => [
+                    'placeholder' => 'Merci de saisir votre mot de passe'
+                ]
+                ],
+            'second_options' => [
+                'label' => 'confirmer votre mot de passe' , 
+                'attr' => [
+                    'placeholder' => 'Merci de confirmer votre mot de passe'
+                ]
+            ]
+        ])
         ->add('agreeTerms', CheckboxType::class, [
             'mapped' => false,
             'constraints' => [
@@ -47,7 +66,9 @@ class RegistrationFormType extends AbstractType
                     'message' => "Accepter les conditions d'utilisation",
                 ]),
             ],
-        ]);
+        ])
+        ->add('submit' , SubmitType::class)
+        ;
     }
 
 public function configureOptions(OptionsResolver $resolver){

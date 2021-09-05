@@ -4,13 +4,17 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\ResetPassword;
+use App\Repository\UserRepository; 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Mime\Email;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+
 
 class ResetPasswordController extends AbstractController
 {
@@ -18,17 +22,19 @@ class ResetPasswordController extends AbstractController
     public function __construct(EntityManagerInterface $entityManager){
         $this->entityManager = $entityManager;
     }
+    
     /**
      * @Route("/motdepasseoublier", name="reset_password")
      */
-    public function index(Request $request , MailerInterface $mailer)
+    
+    public function forgetPassword(Request $request , MailerInterface $mailer , UserRepository $userRepository)
     {
         
         if($request->get('email')){
 
             $user = $this->entityManager->getRepository( User::class )->findOneByEmail($request->get('email'));
         
-            if(!$user){
+            
 
                 //enregistrer en bases la demande de reset passaword 
                 $reset_password = new ResetPassword();
@@ -38,34 +44,63 @@ class ResetPasswordController extends AbstractController
                 $this->entityManager->persist($reset_password);
                 $this->entityManager->flush();
 
+            
                 // envoyer email a l'utilisateur pour mettre a jour le mdp
                
             $url = $this->generateUrl('update_password' ,[
                 'token' => $reset_password->getToken()
             ]
             );
-               $content = "Bonjour".$user->getFirstname() ."vous avez demander a reinitialiser votre mot de passe sur notre site<br>";
-               $content .="Merci de cliquez sur <a href='$url' >le lien suivant pour le changer</a>";
-            $email = (new Email())
-            ->from('melissa.mangione@gmail.com')
+               $content = "Bonjour".$user->getFirstname() ." vous avez demander a reinitialiser votre mot de passe sur notre site<br>";
+               $content .="Merci de cliquez sur <a href='$url'>le lien suivant pour le changer</a>";
+            
+               $email = (new Email())
+               ->from(new Address('melissa.mangione@gmail.com'))
             ->to($user->getEmail())
             ->subject('Reinitialiser votre mot de passe sur La Nimealierie')
             ->text($content);
 
             $mailer->send($email);
-            }
-
-    }
-        return $this->render('reset_password/index.html.twig', [
            
-        ]);
+   
+};
+        return $this->render('reset_password/index.html.twig');
     }
+
 
     /**
      * @Route("/modifier-motdepasse/{token}", name="update_password")
      */
-    public function Update(Request $request)
-    {
+    
+public function update($token){
+    $reset_password = $this->entityManager->getRepository( ResetPassword::class)->findOneByToken($token);
 
+    //verifier le create date est -3h
+    $now = new \DateTime();
+    if( $now > $reset_password->getCreatedAt()->modify('+ 3 hours')){
+        //token expirer
+
+        $this->addFlash('motice' , 'Votre demande de mot de passe a expirer , Merci de la renouveller');
+        return $this->redirectToRoute('reset_password');
     }
+    if( $now < $reset_password->getCreatedAt()->modify('+ 3 hours')){
+        //afficher vue changer mot de passe 
+        return $this->render('update_password/index.html.twig');
+
+        //encoder le nouveau mot de passe 
+
+
+        //flush en base de données
+
+
+        // redirection vers page de connexion
+    }
+
+    
 }
+
+}
+
+
+  
+
