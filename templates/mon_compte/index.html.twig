@@ -61,10 +61,10 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {% if is_granted('ROLE_ADMIN') %}
 
-  <p> Bienvenue cher administrateur , ici tu pourra gerer ton compte comme un client normal , mais aussi accéder au BackOffice </p>
+  <p class="text-center"> Bienvenue cher(e) administrateur , ici tu pourra gerer ton compte comme un client normal , mais aussi accéder au BackOffice </p>
 
 {% else %}
-
+<div>
 <p>Bienvenue sur votre espace utilisateur , ici vous pourrez gerer vos adreeses , commandes ..</p>
 {% endif %}
 
@@ -80,11 +80,11 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 </ul>
 {% if is_granted('ROLE_ADMIN') %}
 
-  <a href="{{ path('back_office')}}">Aller sur le backoffice -> </a>
+<a href="{{ path('back_office')}}" id="linkbackoffice">Aller sur le backoffice -></a>
 
 {% endif %}
 
-
+</div>
 
 {% endblock %}
 {% block footer %}

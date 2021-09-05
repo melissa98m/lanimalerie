@@ -33,6 +33,9 @@ a {
     padding: 30px;
     border-radius: 10px 100px / 120px;
 }
+#linkbackoffice {
+    padding-left: 1300px;
+}
 /* page service 3.0 */
 
 #head { background:#181015 url( /images/tortueespace.jpg) no-repeat; background-size: cover; min-height:520px; text-align: center; padding-top:240px; color:white; font-family:"Open sans", Helvetica, Arial; font-weight:300; }
