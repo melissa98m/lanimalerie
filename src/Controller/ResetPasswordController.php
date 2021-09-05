@@ -9,10 +9,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Form\UpdatePasswordType;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 
@@ -72,7 +74,7 @@ class ResetPasswordController extends AbstractController
      * @Route("/modifier-motdepasse/{token}", name="update_password")
      */
     
-public function update($token){
+public function update(Request $request, UserPasswordEncoderInterface $passwordEncoder,$token , User $user){
     $reset_password = $this->entityManager->getRepository( ResetPassword::class)->findOneByToken($token);
 
     //verifier le create date est -3h
@@ -85,16 +87,34 @@ public function update($token){
     }
     if( $now < $reset_password->getCreatedAt()->modify('+ 3 hours')){
         //afficher vue changer mot de passe 
-        return $this->render('update_password/index.html.twig');
+        return $this->render('update_password');
+    }
+       $form = $this->createForm(UpdatePasswordType::class);
+       $form->handleRequest($request);
 
+       if ($form->isSubmitted() && $form->isValid()) {
+        $new_pwd = $form->get('new_password')->getData();
+       
         //encoder le nouveau mot de passe 
-
-
+        $user->setPassword(
+            $passwordEncoder->encodePassword(
+                $user,
+                $form->get('newpassword')->getData(),
+                
+            ));
         //flush en base de données
-
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+        //ajouter un message 
+        $this->addFlash('notice' , 'Votre mot de passe à bientété modifier');
 
         // redirection vers page de connexion
-    }
+        return $this->redirectToRoute('app_login');
+       }
+        return $this->render('update_password/index.html.twig' , [
+            'form' => $form->createView()
+        ]);
 
     
 }

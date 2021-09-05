@@ -58,6 +58,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {% block main %}
 <div class="block-small">
+<h1>Reinitialiser le mot de passe</h1>
   {% for message in app.flashs|'notice' %}
     <div class="alert alert-info">{{ message }}</div>
     {{ form(form) }}

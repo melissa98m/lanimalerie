@@ -29,9 +29,9 @@ class ChangePasswordType extends AbstractType
                 'disabled' => true ,
                 'label' => 'Mon premon'
             ])
-            ->add('password' , PasswordType::class , [
+            ->add('plainPassword' , PasswordType::class , [
                 'label' => 'Mon mot de passe actuel' ,
-                'mapped' => true,
+                'mapped' => false,
                 'attr' => [
                     'placeholder' => 'Saisir le mot de passe actuel'
                 ]

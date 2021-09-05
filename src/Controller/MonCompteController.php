@@ -46,20 +46,23 @@ class MonCompteController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
             //recuperer l'ancien mdp
-            $password = $form->get('password')->getData();
+            $passwordold = $form->get('plainPassword')->getData();
 
             //modifier le mot de passe
-            if($passwordEncoder->isPasswordValid($user,$password)){
+            if($passwordEncoder->isPasswordValid($user,$passwordold)){
                 //nouveau motdepasse
-                $new_pwd = $form->get('new_password')->getData();
-                //encoder le nouveau motdepasse
-                $password = $passwordEncoder->encodePassword($user , $new_pwd);
-                // seter le nouveau password 
-                $user->setPassword($password);
+               
+                $user->setPassword(
+                    $passwordEncoder->encodePassword(
+                        $user,
+                        $form->get('newpassword')->getData(),
+                        
+                    )
+                );
 
                 //le mettre en bdd
                 $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($password);
+                $entityManager->persist($user);
                 $entityManager->flush();
                 $notification = "votre mot de passe à bien été modifier";
              } else{
