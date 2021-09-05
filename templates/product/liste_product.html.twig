@@ -76,8 +76,11 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             <div class="card-body">
               <h5 class="card-title">{{ product.name }}</h5>
               <p class="card-text">{{ product.price }}€</p>
+              
               <a  class="btn btn-primary" href="{{ path('product_detail', {'id': product.id}) }}">Détails</a>
-              <i class="fas fa-cart-plus fa-2x" ><a href="{{ path('add_to_cart', {'id': product.id}) }}"></a></i>
+              
+              <a href="{{ path('add_to_cart', {'id': product.id}) }}" class="btn"><i class="fas fa-cart-plus fa-2x" ></i></a>
+              
              </div>
             </div>
         {% else %}
