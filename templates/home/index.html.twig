@@ -19,6 +19,7 @@ integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/
 {% block body %}
 {% block header %}
     <header>
+     
             <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             {% block images %}
             <div class="d-inline-block">
@@ -36,6 +37,10 @@ integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/
      <li class="nav-item" > <a class="nav-link active " href="/service">Service 3.0</a></li>
      <li class="nav-item"> <a class="nav-link active" href="{{ path('contact')}}">Contact</a></li>
     </ul>
+    <div class="text-center">
+   {{ render(controller('App\\Controller\\SearchController::searchBar')) }}
+   
+    </div>
     </div>
     
     <div class="m-4 p-2">

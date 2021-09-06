@@ -1,9 +1,9 @@
 
+/* search bar*/
 
-
-
-
-
+.input-group .rounded{
+    width: 300px;
+}
 body{
     background-color: aliceblue;
 }
