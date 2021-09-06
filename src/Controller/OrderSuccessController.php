@@ -10,8 +10,10 @@ use App\Entity\OrderDetails;
 use App\Entity\Product;
 use App\Form\OrderType;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
+use App\Repository\UserRepository; 
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\MailerInterface;
 use App\Repository\OrderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,32 +32,32 @@ class OrderSuccessController extends AbstractController
            
     }
     /**
-     * @Route("/success/{id}", name="order_success")
+     * @Route("/success", name="order_success")
      */
 
-    public function show(Order $order , OrderRepository $orderRepository): Response
+    public function show(Order $order , User $user , MailerInterface $mailer , Cart $cart): Response
     {
        
-    
+       
 
-    /*if(!$order->getState() == 0){
+    if(!$order->getState() == 0){
         $cart->remove();
         $order->setState(2);
         $this->entityManager->flush();
 
 
-    }*/
+    }
 
         // ici le mail de validation
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Validation de votre commande')
-            ->setFrom(array('melissa.mangione@gmail.com' => "NoReply"))
-            ->setTo($order->getUser()->getEmail())
-            ->setCharset('utf-8')
-            ->setContentType('text/html')
-            ->setBody($this->renderView('order/orderSuccess.html.twig',array('user' => $order->getUser())));
+        $email = (new Email())
+        ->from(new Address('melissa.mangione@gmail.com' , 'NoReply'))
+        ->to($user->getEmail())
+        ->subject('Validation de votre commande');
+        
 
-        $this->get('mailer')->send($message);
+        
+
+        $mailer->send($email);
 
         
         return $this->render('order/orderSuccess.html.twig', [

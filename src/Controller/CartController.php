@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+
 use App\Classe\Cart;
 use App\Entity\Product;
 
@@ -21,7 +22,7 @@ class CartController extends AbstractController
  
  }
  
- /**
+    /**
      * @Route("/mon-panier", name="cart")
      */
 
@@ -33,7 +34,7 @@ class CartController extends AbstractController
         
        
 
-        foreach( $cart->get() as $id => $quantity){
+        foreach($cart->get() as $id => $quantity){
 
             $product = $this->entityManager->getRepository(Product::class )->findOneById($id);
             
@@ -46,7 +47,7 @@ class CartController extends AbstractController
     
     
         return $this->render('cart/index.html.twig' , [
-            "cart"=>$cartComplete
+            'cart'=>$cartComplete
         ]);
     
     }
@@ -68,9 +69,8 @@ class CartController extends AbstractController
         return $this->redirectToRoute('liste_product');
     }
 
-
     /**
-     * @Route("/cart/delte/{id}" , name="delete_to_cart")
+     * @Route("/cart/delete/{id}" , name="delete_to_cart")
      */
     public function delete(Cart $cart , $id)
     {

@@ -116,7 +116,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
    <strong>Total T.T.C: {% set totalTTC = total + carriers.price %}{{ totalTTC }}€ </strong>
 </div>
     <a class="btn btn-danger btn-block mt-3" href="{{ path('remove_my_cart') }}">Abondonner</a>
-   <a href="{{ path('order_success' , { 'id': order.id }) }}" class="btn btn-success btn-block mt-3" >Payer | {{ totalTTC }}€</a>
+   <a href="{{ path('order_success') }}" class="btn btn-success btn-block mt-3" >Payer | {{ totalTTC }}€</a>
 </div>
 <div>
 {% endblock %}
