@@ -37,11 +37,11 @@ integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/
      <li class="nav-item" > <a class="nav-link active " href="/service">Service 3.0</a></li>
      <li class="nav-item"> <a class="nav-link active" href="{{ path('contact')}}">Contact</a></li>
     </ul>
-    <div class="text-center">
+   </div>
    {{ render(controller('App\\Controller\\SearchController::searchBar')) }}
    
-    </div>
-    </div>
+    
+    
     
     <div class="m-4 p-2">
      <a href="{{ path('cart')}}"><img src="{{ asset('images/shopping-cart.png') }}" alt="cart" height='24px'></a>
@@ -67,14 +67,14 @@ integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/
 {% block carrousel1 %}
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="2000">
+    <div class="carousel-item active" data-bs-interval="4000">
       <img class="d-block w-100" src="images/chatchien.jpg" alt="First slide" >
     </div>
-    <div class="carousel-item" data-bs-interval="2000">
+    <div class="carousel-item" data-bs-interval="4000">
       <img class="d-block w-100" src="images/fish.jpg" alt="Second slide">
     </div>
-    <div class="carousel-item" data-bs-interval="10000">
-      <img class="d-block w-100" src="tortueespace.jpg" alt="Third slide">
+    <div class="carousel-item" data-bs-interval="4000">
+      <img class="d-block w-100" src="images/tortueespace.jpg" alt="Third slide">
     </div>
   </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
@@ -118,7 +118,7 @@ integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/
         <br>
           <div class="container">
                 
-                    <div class="row text-center bg-light">
+                    <div class="row text-center">
                         <div class="col-2">
                             <img class=" img-fluid  w-50 rounded-circle" src="images/chienlogo.png">
                             <h4><a href="/dog">Chiens</a></h4>

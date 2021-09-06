@@ -32,7 +32,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
      <li class="nav-item"> <a class="nav-link active" href="{{ path('contact')}}">Contact</a></li>
     </ul>
     </div>
-    
+    {{ render(controller('App\\Controller\\SearchController::searchBar')) }}
     <div class="m-4 p-2">
      <a href="{{ path('cart')}}"><img src="{{ asset('images/shopping-cart.png') }}" alt="cart" height='24px'></a>
      </div>

@@ -1,1 +1,12 @@
-{{ form(form) }}
+
+<div class="row m-4">
+ <div class="col-6">
+{{ form_start(form) }}
+{{ form_row(form.query) }}
+</div>
+ <div class="col-6">
+{{ form_row(form.recherche) }}
+{{ form_end(form) }}
+</div>
+
+</div>
