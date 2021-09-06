@@ -28,7 +28,7 @@ class ProductController extends AbstractController
         $this->entityManager = $entityManager;
     }
     /**
-     * @Route("/admin", name="product_index", methods={"GET"})
+     * @Route("/backoffice", name="product_index", methods={"GET"})
      */
     public function index(ProductRepository $productRepository , Request $request): Response
     {
@@ -51,7 +51,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/admin/new", name="product_new", methods={"GET","POST"})
+     * @Route("/backoffice/new", name="product_new", methods={"GET","POST"})
      */
     public function new(Request $request, SluggerInterface $slugger): Response
     {

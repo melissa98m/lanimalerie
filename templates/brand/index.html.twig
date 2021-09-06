@@ -72,6 +72,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Logo</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -79,6 +80,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         {% for brand in brands %}
             <tr>
                 <td>{{ brand.id }}</td>
+                <td><img src="{{ asset('upload/' ~  brand.logo) }}" alt="{{ brand.name }}" width="100px" /></td>
                 <td>{{ brand.name }}</td>
                 <td>
                     <a href="{{ path('brand_show', {'id': brand.id}) }}">show</a>
@@ -92,8 +94,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         {% endfor %}
         </tbody>
     </table>
-   <a href="{{ path('back_office')}}">Retourner au baclOffice</a>
+   <a href="{{ path('back_office')}}">Retourner au backOffice</a>
     
+
 {% endblock %}
 
 {% block footer %}

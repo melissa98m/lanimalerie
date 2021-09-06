@@ -8,8 +8,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" 
 integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" 
 crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" 
+integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
  <link rel="stylesheet" href="{{ asset('css/lanimealerie.css') }}" type="text/css">
 
 {% endblock %}
@@ -59,26 +60,26 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
   
 
 {% block carrousel1 %}
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="images/chatchien.jpg" alt="First slide"  data-slide-to="0" class="active" interval="2000">
+    <div class="carousel-item active" data-bs-interval="2000">
+      <img class="d-block w-100" src="images/chatchien.jpg" alt="First slide" >
     </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="images/fish.jpg" alt="Second slide"  data-slide-to="1" interval="2000" >
+    <div class="carousel-item" data-bs-interval="2000">
+      <img class="d-block w-100" src="images/fish.jpg" alt="Second slide">
     </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="tortueespace.jpg" alt="Third slide" data-slide-to="2" interval="2000">
+    <div class="carousel-item" data-bs-interval="10000">
+      <img class="d-block w-100" src="tortueespace.jpg" alt="Third slide">
     </div>
   </div>
-   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+    <span class="visually-hidden">Next</span>
+  </button>
 </div>
 {% endblock %}
         {% block nous %}
@@ -253,15 +254,15 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
  	<div class="col-md-4 col-sm-6 highlight text-center p-2">
   <i class="fas fa-shipping-fast fa-3x"></i>
   <div class="h-caption mt-3">
-    <h5>Livraison gratuites et par la poste</h5></div>
-    <div class="h-body text-center"><p>Profitez de la livraison gratuite et livrés par la poste</p>
+    <h5>Livraison gratuite dés 39€ et par la poste</h5></div>
+    <div class="h-body text-center"><p>Profitez de la livraison gratuite dés 39€ d'achats et livrés par la poste</p>
   </div>
   </div>
   <div class="col-md-4 col-sm-6 highlight text-center p-2">
   <i class="fas fa-percent fa-3x"></i>
   <div class="h-caption mt-3">
     <h5>10€ de reduction</h5></div>
-    <div class="h-body text-center"><p>Pour votre premiere commande 
+    <div class="h-body text-center"><p>Pour votre premiere commande profitez de 10€ de reduction sur votre panier
     (sans minimum d'achat)</p>
   </div>
   </div>
@@ -325,14 +326,13 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         </footer>
 {% endblock %}
 {% block javascripts %}
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-        </script>
+        
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
 
         <script src="{{ asset('js/script.js') }}"></script>
 {% endblock %}

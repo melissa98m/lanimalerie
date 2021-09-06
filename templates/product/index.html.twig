@@ -86,7 +86,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.price }}</td>
-                <td>{{ product.image }}</td>
+                <td> <img src="{{ asset('upload/' ~  product.image) }}" alt="{{ product.name }}" width="100px" /></td>
                 <td>{{ product.enstock ? 'Yes' : 'No' }}</td>
                 <td>{{ product.reference }}</td>
                 <td>{{ product.description }}</td>

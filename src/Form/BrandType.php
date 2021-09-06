@@ -15,7 +15,7 @@ class BrandType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('Logo' , FileType::class , [
+            ->add('logo' , FileType::class , [
                 'label' => 'Logo' , 
                 'mapped' => false , // permet quil ne soit pas traiter directement
                 'required' => false , 
