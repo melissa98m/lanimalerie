@@ -60,6 +60,8 @@ class Order
      */
     private $state;
 
+   
+
     
 
     public function __construct()

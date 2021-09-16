@@ -220,49 +220,39 @@ class OrderController extends AbstractController
 
 
     /**
-     * @Route("/commande/success/{id}", name="order_success")
+     * Méthode remplaçant l'API banque.
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
+    public function validationCommandeAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $order = $em->getRepository(Order::class)->findOneById($id);
 
-   public function success(Order $order , Cart $cart , User $user , MailerInterface $mailer ,  $id): Response
-   {
-      
-       $order = $this->entityManager->getRepository(Order::class )->findOneById($id);
+        if (!$order or $order->getPayer() == true) {
+            throw $this->createNotFoundException('La commande n\'existe pas.');
+        }
 
-   if(!$order->getState() == 0){
-       $cart->remove();
-       $order->setState(1);
-       $this->entityManager->persist($order);
-       $this->entityManager->flush();
+        $order->setValider(true);
+        $order->setReference($this->container->get('setNewReference')->reference()); // service
+        $em->flush();
 
-
-   }
-
-       // ici le mail de validation
-       $email = (new Email())
-       ->from(new Address('melissa.mangione@gmail.com' , 'NoReply'))
-       ->to($user->getEmail())
-       ->subject('Validation de votre commande');
-       
-
-       
-
-       $mailer->send($email);
-
-       
-       return $this->render('order/orderSuccess.html.twig', [
-           'order' => $order
-           
-           
-       ]);
-         
-    
-
-   }
-    
+        $session = $request->getSession();
      
+        $session->remove('cart');
+        
+
+        $this->get('session')->getFlashBag()->add('success', 'Votre commande est validée avec succès.');
+        return $this->redirect($this->generateUrl('order_success'));
     }
 
+
+
+   
     
+
+}
 
 
 

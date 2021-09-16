@@ -275,6 +275,9 @@
             "./config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "spipu/html2pdf": {
+        "version": "v5.2.2"
+    },
     "symfony/asset": {
         "version": "v5.3.4"
     },
@@ -662,6 +665,9 @@
     },
     "symfonycasts/verify-email-bundle": {
         "version": "v1.5.0"
+    },
+    "tecnickcom/tcpdf": {
+        "version": "6.4.2"
     },
     "theseer/tokenizer": {
         "version": "1.2.1"

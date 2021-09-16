@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -105,4 +106,40 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+    public function factureAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $factures = $em->getRepository(Order::class)->findbyFacture($this->getUser());
+
+        return $this->render('facture.html.twig', ['factures' => $factures
+    ]);
+    }
+    
+
+    public function facturePdfAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $facture = $em->getRepository(Order::class)
+            ->findOneBy(array(
+                'utilisateur' => $this->getUser(),
+                'payer' => true,
+                'id' => $id));
+        if (!$facture) {
+            $this->get('session')->getFlashBag()->add('error', 'Une erreur est survenue');
+            return $this->redirect($this->generateUrl('factures'));
+        }
+
+        $html = $this->renderView('UtilisateursBundle:Default/layout:facturePDF.html.twig', ['facture' => $facture]);
+
+        $html2pdf = new Html2Pdf('P', 'A4', 'fr');
+        $html2pdf->writeHTML($html);
+        $html2pdf->output('Facture.pdf');
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/pdf');
+        return $response;
+    }
+
 }

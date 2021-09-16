@@ -33,6 +33,10 @@ a {
     color:black;
 }
 
+.nav-item .active{
+  font-size: 18px;
+  padding-right: 5px;
+}
 .form-check{
     background-color: #e3edff;
     padding: 20px 65px;
