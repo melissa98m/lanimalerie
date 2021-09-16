@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchType extends AbstractType{
@@ -25,6 +26,11 @@ class SearchType extends AbstractType{
                                             ] )
         ->add('categories' , EntityType::class , [ 'label' => false, 'class' => Category::class , 
                                                 'multiple'=> true , 'expanded' => true])       
+        
+        ->add('min' , NumberType::class , [ 'label' => false, 'required' => false ,
+         'attr' => [ 'placehoder' => 'Prix min']])
+        ->add('max' , NumberType::class , [ 'label' => false, 'required' => false ,
+        'attr' => [ 'placehoder' => 'Prix max']])
         ->add('submit' , SubmitType::class , ['label' => 'Filtrer' , 'attr' => [
             'class' => 'btn-block btn-info'
         ]])        ;                                                       

@@ -61,7 +61,27 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
  <div class="row">
     <div class="col-md-3">
     <h2>Filtrer</h2>
-    {{ form(form) }}
+    {{ form_start(form) }}
+     {{ form_row(form.string) }}
+     <h4>Categories</h4>
+      {{ form_row(form.categories) }}
+      <h4>Prix</h4>
+      <div class="row">
+      <div class="col-md-6">
+       {{ form_row(form.min , {'attr': {'placeholder': 'Prix minimum'} }) }}
+       </div>
+       <div class="col-md-6">
+       {{ form_row(form.max , {'attr': {'placeholder': 'Prix Maximum'} }) }}
+      </div>
+         
+         </div>
+         {{ form_row(form.submit) }}
+
+
+
+
+     {{ form_end(form) }}
+
     </div>
     <div class="col-md-9">
 

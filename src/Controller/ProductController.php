@@ -184,20 +184,19 @@ class ProductController extends AbstractController
      */
     public function showDetail(Product $product): Response
     {
-        
-        $products = $this->entityManager->getRepository(Product::class)->findAll();
+
+        $category = $product->getCategory();
+        $products = $this->entityManager->getRepository(Product::class)->findByCategory($category);
+       
         
        
 
-       // $category = $product->getCategory();
-     //$getSimilarProducts = $this->entityManager->getRepository(Product::class)->findBy(array('category' => $category));
-     //unset($getSimilarProducts[array_search($product, $getSimilarProducts)]);
-    // return $getSimilarProducts; 
 
         return $this->render('product/detailProduct.html.twig', [
             'product' => $product,
             'products' => $products,
-            //'similarProducts' => $getSimilarProducts
+            
+            
             
             
         ]

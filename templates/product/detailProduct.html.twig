@@ -76,32 +76,35 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
             </div>
 
 <hr>
-         <div class="row mt-5">
-         {% for product in products %}  
-         
 
- 
-              <div class="text-center" style="width: 9rem;">
-              <img src="{{ asset('upload/' ~  product.image) }}" alt="{{ product.name }}" width="100px" />
+        
+   
+       
+               <h4>Produits similaires</h4>
+                 <div class="row">
+                 {% if product.category  %}
+               {% for product in products %}
+               
+               <div class="col mt-4">
+             <div class="text-center" style="width: 10rem;">
+             <img src="{{ asset('upload/' ~  product.image) }}" alt="{{ product.name }}" width="100px" />
             <div class="card-body">
-              <h6 class="card-title">{{ product.name }}</h6>
+              <h5 class="card-title">{{ product.name }}</h5>
               <p class="card-text">{{ product.price }}€</p>
-              
               <a  class="btn btn-primary" href="{{ path('product_detail', {'id': product.id}) }}">Détails</a>
               
+             
+              </div>
              </div>
             </div>
+                  
+                  
+              {% endfor %}
+          
+     </div>
+ {% endif %}
 
-
-
-
-
-
-
-    {% endfor %}
 {% endblock %}
-</div>
-
  {% block footer %}
         <footer>
             <div class="container-fluid bg-dark text-light">

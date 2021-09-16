@@ -71,7 +71,16 @@ class ProductRepository extends ServiceEntityRepository
         ->andWhere('p.name LIKE :string')
         ->setParameter('string', "%{$search->string}%");
     }
-     
+    if(!empty($search->min)){
+        $query = $query
+            ->andWhere('p.price >= :min')
+            ->setParameter('min', $search->min);
+    }
+    if(!empty($search->max)){
+        $query = $query
+            ->andWhere('p.price <= :max')
+            ->setParameter('max', $search->max);
+    }
    return $query->getQuery()->getResult();
     }
 
@@ -108,12 +117,17 @@ class ProductRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findOneByCategory($category){
+
+    /**
+     * requete qui permet de recupererles produits en fonction de la categorie
+     *@return Product()
+     */
+    public function findByCategory($category){
         $query =  $this->createQueryBuilder('p')
         ->select('c', 'p')
         ->join('p.category' , 'c')
         ->andWhere('c.id IN (:categories)')
-        ->setParameter('categories', $category->categories);
+        ->setParameter('categories', $category);
    return $query
             ->getQuery()
             ->getResult();
