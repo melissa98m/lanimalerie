@@ -69,6 +69,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 {% set formHtml %}
 <p>Pas d'adresse enregistrer?<a href="{{ path('adress_new')}}" class="text-primary">En crééer une</a></p>
 {{ form_start(form , {action:path('order_recap') })}}
+<a class="btn btn-danger btn-block mt-3" href="{{ path('remove_my_cart') }}">Abondonner</a>
 {{ form_end(form) }}
 
 
@@ -76,6 +77,8 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 {% endset %}
 {{ formHtml | replace({('[br]') : '<br>'})| raw }}
+
+
 
 </div>
 <div class="col-md-6">
@@ -101,7 +104,9 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 {% set total = total + (product.product.price * product.quantity )  %}
 {% endfor %}
    <p class="mt-2">Total à payer : {{ total }} €</p> 
+   
 </div>
+
 </div>
 <div>
 {% endblock %}

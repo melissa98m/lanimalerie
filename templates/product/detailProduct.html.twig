@@ -56,6 +56,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 {% block main %}
+ <a href="{{ path('liste_product') }}">Retourner aux produit</a>
     <h1>{{ product.name }}</h1>
 
            <div class="row">
@@ -74,13 +75,33 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
              </div>
             </div>
 
-    <a href="{{ path('liste_product') }}">Retourner aux produit</a>
-    
+<hr>
+         <div class="row mt-5">
+         {% for product in products %}  
+         
+
  
+              <div class="text-center" style="width: 9rem;">
+              <img src="{{ asset('upload/' ~  product.image) }}" alt="{{ product.name }}" width="100px" />
+            <div class="card-body">
+              <h6 class="card-title">{{ product.name }}</h6>
+              <p class="card-text">{{ product.price }}€</p>
+              
+              <a  class="btn btn-primary" href="{{ path('product_detail', {'id': product.id}) }}">Détails</a>
+              
+             </div>
+            </div>
 
 
-    
+
+
+
+
+
+    {% endfor %}
 {% endblock %}
+</div>
+
  {% block footer %}
         <footer>
             <div class="container-fluid bg-dark text-light">

@@ -70,26 +70,28 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+                
                 <th>Nom</th>
                 <th>Prix</th>
                 <th>Image</th>
                 <th>En stock</th>
                 <th>Reference</th>
                 <th>Description</th>
+                <th>En best</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for product in products %}
             <tr>
-                <td>{{ product.id }}</td>
+              
                 <td>{{ product.name }}</td>
-                <td>{{ product.price }}</td>
+                <td>{{ product.price }}€</td>
                 <td> <img src="{{ asset('upload/' ~  product.image) }}" alt="{{ product.name }}" width="100px" /></td>
                 <td>{{ product.enstock ? 'Yes' : 'No' }}</td>
                 <td>{{ product.reference }}</td>
                 <td>{{ product.description }}</td>
+                <td>{{ product.isBest ? 'Yes' : 'No' }}</td>
                 <td>
                     <a  class="btn btn-primary" href="{{ path('product_show', {'id': product.id}) }}">Détails</a>
                     <a class="btn btn-warning" href="{{ path('product_edit', {'id': product.id}) }}">Modifier</a>

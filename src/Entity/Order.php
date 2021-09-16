@@ -131,6 +131,17 @@ class Order
 
         return $this;
     }
+    public function getState(): ?int
+    {
+        return $this->state;
+    }
+
+    public function setState(int $state): self
+    {
+        $this->state = $state;
+
+        return $this;
+    }
 
     /**
      * @return Collection|OrderDetails[]
@@ -149,7 +160,7 @@ class Order
 
         return $this;
     }
-
+    
     public function removeOrderDetail(OrderDetails $orderDetail): self
     {
         if ($this->orderDetails->removeElement($orderDetail)) {
@@ -164,15 +175,5 @@ class Order
 
    
 
-    public function getState(): ?int
-    {
-        return $this->state;
-    }
-
-    public function setState(int $state): self
-    {
-        $this->state = $state;
-
-        return $this;
-    }
+    
 }

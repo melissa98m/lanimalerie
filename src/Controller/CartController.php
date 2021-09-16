@@ -22,6 +22,9 @@ class CartController extends AbstractController
  
  }
  
+
+
+
     /**
      * @Route("/mon-panier", name="cart")
      */
@@ -29,6 +32,15 @@ class CartController extends AbstractController
     public function show(Cart $cart)
     {
        
+    
+
+
+        if (empty($cart->get())){
+    
+    
+
+            return $this->render('cart/index.html.twig' , ['cart' => $cart]);
+        }
 
         $cartComplete = [];
         
@@ -60,6 +72,7 @@ class CartController extends AbstractController
         $cart->add($id);
         return $this->redirectToRoute('cart');
     }
+    
     /**
      * @Route("/cart/remove", name="remove_my_cart")
      */

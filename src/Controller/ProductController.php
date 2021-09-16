@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+
 use App\Classe\Search;
+use App\Entity\Category;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Form\SearchType;
@@ -112,7 +114,7 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $imageFile = $form->get('imageProduct')->getData(); //recuperer le contenue champ upload envoyé
+            $imageFile = $form->get('image')->getData(); //recuperer le contenue champ upload envoyé
     
             if($imageFile) {// condition si il y a un logo , traitement du fichier
                 $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);// recupere le nom de ficher original uploader (juste le nom)
@@ -128,9 +130,11 @@ class ProductController extends AbstractController
                 $product->setImage($newFilename);
             }
     
-            $this->getDoctrine()->getManager()->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($product);
+            $entityManager->flush();
     
-            return $this->redirectToRoute('list_Product', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('product_index', [], Response::HTTP_SEE_OTHER);
         }
     
         return $this->renderForm('product/edit.html.twig', [
@@ -180,8 +184,24 @@ class ProductController extends AbstractController
      */
     public function showDetail(Product $product): Response
     {
+        
+        $products = $this->entityManager->getRepository(Product::class)->findAll();
+        
+       
+
+       // $category = $product->getCategory();
+     //$getSimilarProducts = $this->entityManager->getRepository(Product::class)->findBy(array('category' => $category));
+     //unset($getSimilarProducts[array_search($product, $getSimilarProducts)]);
+    // return $getSimilarProducts; 
+
         return $this->render('product/detailProduct.html.twig', [
             'product' => $product,
-        ]);
-    }
+            'products' => $products,
+            //'similarProducts' => $getSimilarProducts
+            
+            
+        ]
+        );
+}
+
 }

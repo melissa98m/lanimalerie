@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
 
@@ -22,7 +23,7 @@ class ProductType extends AbstractType
         $builder
             ->add('name' , TextType::class)
             ->add('price' , TextType::class)
-            ->add('EnStock' , ChoiceType::class , ['choices' =>['True' => 0,'false' => 1,]])
+            ->add('EnStock' , ChoiceType::class , ['choices' =>['True' => 1 ,'false' => 0,]])
             ->add('reference' , IntegerType::class)
             ->add('image' , FileType::class , [
                 'label' => 'imageProduct' , 
@@ -48,6 +49,7 @@ class ProductType extends AbstractType
                                                 'choice_label' => 'name' , 
                                                 'multiple' => true , 
                                                 'expanded' => true))
+            ->add('isBest' , ChoiceType::class , ['choices' =>['True' => 1,'false' => 0,]])
          ;  
                                               
     }

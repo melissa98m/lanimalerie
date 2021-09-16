@@ -10,6 +10,8 @@ use App\Entity\OrderDetails;
 use App\Entity\Product;
 use App\Form\OrderType;
 use App\Form\OrdersType;
+use Knp\Snappy\Pdf;
+use Symfony\Component\Mime\Address;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
@@ -29,8 +31,10 @@ class OrderController extends AbstractController
 
     private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager){
+    public function __construct(EntityManagerInterface $entityManager , Pdf $pdf){
         $this->entityManager = $entityManager;
+        $this->pdf = $pdf;
+
            
     }
 
@@ -64,7 +68,7 @@ class OrderController extends AbstractController
     }
 
     /**
-     * @Route("/orders/{id}", name="order_show", methods={"GET"})
+     * @Route("/order/{id}", name="order_show", methods={"GET"})
      */
     public function show(Order $order): Response
     {
@@ -74,7 +78,7 @@ class OrderController extends AbstractController
     }
 
     /**
-     * @Route("/orders/{id}/edit", name="order_edit", methods={"GET","POST"})
+     * @Route("/order/{id}/edit", name="order_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Order $order): Response
     {
@@ -94,7 +98,7 @@ class OrderController extends AbstractController
     }
 
     /**
-     * @Route("/orders/{id}", name="order_delete", methods={"POST"})
+     * @Route("/order/{id}", name="order_delete", methods={"POST"})
      */
     public function delete(Request $request, Order $order): Response
     {
@@ -174,7 +178,7 @@ class OrderController extends AbstractController
                 $order->setCarrierName( $carriers->getName());
                 $order->setCarrierPrice( $carriers->getPrice());
                 $order->setDelivery($delivrey_content);
-                $order->setState(1);
+                $order->setState(0);
 
 
                 
@@ -201,6 +205,8 @@ class OrderController extends AbstractController
                 $this->entityManager->flush();
 
 
+                
+
         return $this->render('order/add.html.twig', [
             'cart' => $cart->getFull(),
             'carriers' => $carriers,
@@ -211,46 +217,52 @@ class OrderController extends AbstractController
     }
         return $this->redirectToRoute('cart');
     }
+
+
     /**
-     * @Route("/success/{id}", name="order_success")
+     * @Route("/commande/success/{id}", name="order_success")
      */
 
-    public function success(Order $order)
-    {
+   public function success(Order $order , Cart $cart , User $user , MailerInterface $mailer ,  $id): Response
+   {
+      
+       $order = $this->entityManager->getRepository(Order::class )->findOneById($id);
+
+   if(!$order->getState() == 0){
+       $cart->remove();
+       $order->setState(1);
+       $this->entityManager->persist($order);
+       $this->entityManager->flush();
+
+
+   }
+
+       // ici le mail de validation
+       $email = (new Email())
+       ->from(new Address('melissa.mangione@gmail.com' , 'NoReply'))
+       ->to($user->getEmail())
+       ->subject('Validation de votre commande');
        
+
+       
+
+       $mailer->send($email);
+
+       
+       return $this->render('order/orderSuccess.html.twig', [
+           'order' => $order
+           
+           
+       ]);
+         
     
 
-    /*if(!$order->getState() == 0){
-        $cart->remove();
-        $order->setState(2);
-        $this->entityManager->flush();
-
-
-    }*/
-
-        // ici le mail de validation
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Validation de votre commande')
-            ->setFrom(array('melissa.mangione@gmail.com' => "NoReply"))
-            ->setTo($order->getUser()->getEmail())
-            ->setCharset('utf-8')
-            ->setContentType('text/html')
-            ->setBody($this->renderView('order/orderSuccess.html.twig',array('user' => $order->getUser())));
-
-        $this->get('mailer')->send($message);
-
-        
-        return $this->render('order/orderSuccess.html.twig', [
-            'order' => $order,
-        ]);
-    }
-    
-
-    
+   }
     
      
     }
 
+    
 
 
 

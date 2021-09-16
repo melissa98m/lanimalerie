@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Classe\Search;
+use App\Entity\Category;
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -106,4 +107,15 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findOneByCategory($category){
+        $query =  $this->createQueryBuilder('p')
+        ->select('c', 'p')
+        ->join('p.category' , 'c')
+        ->andWhere('c.id IN (:categories)')
+        ->setParameter('categories', $category->categories);
+   return $query
+            ->getQuery()
+            ->getResult();
+}
 }

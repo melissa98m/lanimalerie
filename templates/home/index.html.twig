@@ -20,7 +20,7 @@ integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/
 {% block header %}
     <header>
      
-            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark responsive" id="navbar" role="navigation">
             {% block images %}
             <div class="d-inline-block">
                 <img src="{{ asset('images/logo.png') }}" alt="Symfony!"/>
@@ -57,7 +57,7 @@ integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/
 
                     
                    
-           
+           <a href="javascript:void(0);" class="icon" onclick="myFunction()"></a>
         </nav>
     </header>
 {% endblock %}
@@ -68,13 +68,13 @@ integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="4000">
-      <img class="d-block w-100" src="images/chatchien.jpg" alt="First slide" >
+      <img class="d-block w-100" height="650px" src="images/chatchien.jpg" alt="First slide" >
     </div>
     <div class="carousel-item" data-bs-interval="4000">
-      <img class="d-block w-100" src="images/fish.jpg" alt="Second slide">
+      <img class="d-block w-100" height="650px" src="images/fish.jpg" alt="Second slide">
     </div>
     <div class="carousel-item" data-bs-interval="4000">
-      <img class="d-block w-100" src="images/tortueespace.jpg" alt="Third slide">
+      <img class="d-block w-100" height="650px" src="images/tortueespace.jpg" alt="Third slide">
     </div>
   </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
@@ -87,26 +87,22 @@ integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/
   </button>
 </div>
 {% endblock %}
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
         {% block nous %}
     
             <div class="d-block presentation" id="presentation">
                 <h5>Qui sommes-nous</h5>
                 <p>Bonjour ! <br>
-                Je suis Mr ... , apres plusieurs années à gerer mon magasin j'ai décider de me lancer dans l'aventure du e-commerce !
-                    Nous proposons que des produits de qualité et nous negocions des prix plus bas que dans les autres animalerie 
-                    Nous avons créé en La Nimes'Alerie en 2019, cette animalerie spécialisée  située à Nimes.<br>
+                Je suis Mr Capard , apres plusieurs années à gerer mon magasin j'ai décider de me lancer dans l'aventure du e-commerce !
+                    Nous proposons que des produits de qualité et nous negocions des prix plus bas que dans les autres animaleries.
+                <br>
                 Notre objectif est de vous apporter une offre inexistante en matiere de pluralité de produit  à Nimes et en ligne.
                 Pour cela,nous apportons, que vous soyez débutant ou expérimentée, nos conseils et notre accompagnement.
-                    <br>Nous vous offrons des conseils de passionné dont l’éthique commercial est basée sur le bien être animal.
-                        Nous vous proposons une offre qui comprend des animaux comme les NAC , chiens ect..
-                        Le choix des produits,nous l’avons minutieusement étudié, dans le but que l’on vous offre la meilleure gamme possible.
+                    
                      <br>Aussi nous proposons des services spéciaux et uniques : Envoyer vos animaux dans l'espace!
                     Et oui c'est maintenant possible grâce à la Nîmes'Alerie , pour plus d'information rendez vous sur la rubrique "<a href="/service">Service 3.0</a>".
                     <br>Nous livrons dans toute la France grâce a notre partenariat avec la Poste , les livraisons sont gratuites <stong>à partir de 39 euros</strong> . <br>
-                    Je suis Mr ... , apres plusieurs années à gerer mon magasin j'ai décider de me lancer dans l'aventure du e-commerce !
-                    Nous proposons que des produits de qualité et nous negocions des prix plus bas que dans les autres animalerie 
-                    Nous avons créé en La Nimes'Alerie en 2019, cette animalerie spécialisée  située à Nimes.
-                    Enfin, nous vous attendons à présent au magasin et en ligne!
+                    
                     </p>
                   <p> Une question, n'hésitez pas a nous envoyer un message <a href="/contact"> ici</a> à bientot!</p>
             </div>
@@ -145,69 +141,52 @@ integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/
 
         {% endblock %}
 
-
-        
     <hr>
-    {% block pub %}
-    <h2>Les promotions du mois</h2>
+
+   {% block isBest %}
+
+   <h2>Les meilleurs produits</h2>
+     {% for product in product %}
+     
     <div class="container pt-5" id="pub">
-      <h2 class="text-center text-warning mb-4">Pour Varier les plaisirs</h2>
+     
       <div class="row">
         <div class="col-md-5">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="images/lukullus.jpg" alt="lotpate">
-            <h5 class="text-danger mt-3">Lot Lukullus 6 x 300 g pour chien </h5>
-            <div class="d-flex align-items-center">
-              <span class="h3 text-white"></span><span class="text-white ancien-prix">6.49€</span>
-              <a href="#" class="btn btn-danger ms-4">Acheter</a>
-            </div>
+           <img src="{{ asset('upload/' ~  product.image) }}" alt="{{ product.name }}" width="250px">
+      
+            
         </div>
-        <div class="col-md-7">           
-          <p class="pt-4 pt-md-0 text-justify"><strong>Lukullus</strong>  est une marque qui selectionne que des bon produit, dans ce lot vous trouverez plusieurs gouts (Boeuf , lapin ,canard)
-          nos patés ne contiennent pas de céreales</p>
-          <a class="btn btn-dark btn-sm" href="#">En savoir +</a>
+        <div class="col-md-5">           
+         <h5 class="text-danger mt-3">{{ product.name }}</h5>
+          <p class="pt-4 pt-md-0 text-justify">{{ product.description }}</p>
+          <p><strong>{{ product.price }}€ </strong></p>
+          <a  class="btn btn-primary" href="{{ path('product_detail', {'id': product.id}) }}">Détails</a>
+           <a href="{{ path('add_to_cart', {'id': product.id}) }}" class="btn"><i class="fas fa-cart-plus fa-2x" ></i></a>
         </div>
       </div>
-      <br>
-    </div>
-    <div class="container pt-5" id="chatpub">
-      <h2 class="text-center text-warning mb-4">Pour nos amis les chats</h2>
-      <div class="row">
-         <div class="col-md-7">           
-          <p class="pt-4 pt-md-0 text-justify"><strong>Arbre à chat Natural Paradise</strong><br>Arbre à chat avec lourds panneaux en bois issu de la sylviculture durable,
-           épais troncs en sisal, niche avec parois en bois lamellé, idéal pour grand chat.</p>
-          <a class="btn btn-dark btn-sm" href="#">En savoir +</a>
-        </div>
-        <div class="col-md-5">
-         <img class="img-fluid rounded mb-3 mb-md-0" src="images/arbreachat.jpg" alt="lotpate">
-            <h5 class="text-danger mt-3">Arbre à chat Natural Paradise</h5>
-                <div class="d-flex align-items-center">
-              <span class="h3 text-white"></span><span class="text-black ancien-prix">135€</span>
-              <a href="#" class="btn btn-danger ms-4">Acheter</a>
-              <br>
-                </div>
-                
-                </div>
-      </div>
-      <br>
+      
     </div>
     
-    <div class="container pt-5" id="publi">
-      <h2 class="text-center text-warning mb-4">C'est nouveau!</h2>
-      <div class="row">
+    {% endfor %}
+    {% endblock %}
+    {% block service %}
+    
+      <h2 class="text-center text-warning m-4">C'est nouveau!</h2>
+      <div class="row text-center m-2">
       <div class="col-md-5">
             <img class="img-fluid rounded mb-3 mb-md-0" src="images/baniere.png" alt="service">
             <h5 class="text-danger mt-3">Envoyer votre animal dans l'espace</h5>
-              <a href="#" class="btn btn-danger ms-4">Faire le devis</a>   
+              <a href="/contact" class="btn btn-danger ms-4">Faire le devis</a>   
         </div>
        <div class="col-md-7">           
           <p class="pt-4 pt-md-0 text-justify"><strong>Ce Service</strong> est tout nouveau ! Nous sommes d'ailleurs les seuls à le proposer<br>
           Vous avez toujours révez d'envoyer votre animal dans l'espace? C'est maintenant possible</p>
-          <a class="btn btn-dark btn-sm" href="#">En savoir +</a>
+          <a class="btn btn-dark btn-sm" href="/service">En savoir +</a>
         </div>
       <br>
        
       </div>
-    </div>
+   
     {% endblock %}
     <br>
          {% block carrousel %}
@@ -335,8 +314,8 @@ integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
 
 
         <script src="{{ asset('js/script.js') }}"></script>
